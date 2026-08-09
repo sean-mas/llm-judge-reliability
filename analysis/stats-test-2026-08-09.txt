@@ -1,0 +1,48 @@
+============================================================================================
+PRIMARY ANALYSIS  |  split=test  |  488 items
+============================================================================================
+
+prompt: {('v0.2', '3b14635aa1c3eecd')}   <- one entry means the freeze held
+
+PARSE FAILURES (reliability of the tier, reported before any agreement)
+  judge                 judgments   failed    rate
+  tier1_paid                 1464        8    0.5%
+  tier2_hosted_open          1464       43    2.9%
+  tier3_local                1464       36    2.5%
+
+============================================================================================
+SCHEME U   positives=['Unwanted']   negatives=['Consistent']
+  Sensitivity analysis. The judge was not instructed under this rule.
+============================================================================================
+  judge                    n    raw   kappa          95% CI   PABAK   defl    TPR    TNR   flag
+  tier1_paid            1201  0.462   0.130  [ 0.081, 0.179]  -0.076  0.332  0.286  0.914  0.230
+  tier2_hosted_open     1169  0.534   0.195  [ 0.138, 0.257]   0.068  0.338  0.393  0.884  0.313
+  tier3_local           1175  0.486   0.164  [ 0.115, 0.216]  -0.028  0.322  0.306  0.943  0.236
+
+============================================================================================
+SCHEME U+Q   positives=['Questionable', 'Unwanted']   negatives=['Benign', 'Consistent']
+  PRIMARY. This is the rule the frozen rubric actually gives the judge.
+============================================================================================
+  judge                    n    raw   kappa          95% CI   PABAK   defl    TPR    TNR   flag
+  tier1_paid            1456  0.466   0.129  [ 0.084, 0.175]  -0.069  0.337  0.253  0.930  0.196
+  tier2_hosted_open     1421  0.514   0.162  [ 0.109, 0.214]   0.029  0.352  0.349  0.868  0.280
+  tier3_local           1428  0.473   0.131  [ 0.083, 0.178]  -0.055  0.341  0.269  0.916  0.211
+
+  Variance across the three repeats (kappa per repeat, temperature 0):
+    tier1_paid          0.135  0.130  0.121   spread 0.014
+    tier2_hosted_open   0.160  0.173  0.154   spread 0.020
+    tier3_local         0.141  0.130  0.123   spread 0.017
+
+============================================================================================
+SCHEME U+Q+B   positives=['Benign', 'Questionable', 'Unwanted']   negatives=['Consistent']
+  Sensitivity analysis. The judge was not instructed under this rule.
+  Also the scheme used by FaithJudge (Vectara 2025), so this row is the
+  one that is numerically comparable to the closest prior work.
+============================================================================================
+  judge                    n    raw   kappa          95% CI   PABAK   defl    TPR    TNR   flag
+  tier1_paid            1456  0.387   0.077  [ 0.040, 0.114]  -0.225  0.311  0.229  0.914  0.196
+  tier2_hosted_open     1421  0.462   0.126  [ 0.082, 0.169]  -0.077  0.336  0.331  0.884  0.280
+  tier3_local           1428  0.417   0.109  [ 0.073, 0.145]  -0.167  0.308  0.257  0.943  0.211
+
+* auxiliary, reported but never pooled with the three arms.
+Agreement statistics exclude unparseable judgments; see the parse table above.

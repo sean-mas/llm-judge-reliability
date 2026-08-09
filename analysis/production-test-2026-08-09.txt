@@ -1,0 +1,81 @@
+========================================================================================
+PRODUCTION ANALYSIS  |  split=test  |  488 items  |  scheme U+Q
+========================================================================================
+
+4a. DETECTION BY SEVERITY LEVEL
+    Of the items at each human severity level, how many did the judge flag?
+
+    items per level: Consistent 113, Benign 40, Questionable 45, Unwanted 290
+
+    judge                     Consistent          Benign    Questionable        Unwanted
+    tier1_paid               9% (29/337)      2% (3/120)      4% (6/135)   29% (247/864)
+    tier2_hosted_open       12% (39/336)    18% (21/117)     8% (11/135)   39% (327/833)
+    tier3_local              6% (19/332)    16% (19/118)      4% (5/135)   31% (258/843)
+   *tier2_free                       n/a             n/a             n/a             n/a
+
+    Consistent and Benign are faithful under U+Q, so a LOW number is correct.
+    Questionable and Unwanted are unfaithful, so a HIGH number is correct.
+
+========================================================================================
+4b. RELEASE-GATE THRESHOLD SIMULATION
+    A gate blocks the release when the flagged share exceeds a threshold T.
+    The truth would block whenever T < the real unfaithful rate.
+
+    true unfaithful rate ......... 68.6%
+    tier1_paid             flags  19.6%   judge SHIPS but truth BLOCKS for T in [19.6%, 68.6%)
+    tier2_hosted_open      flags  28.0%   judge SHIPS but truth BLOCKS for T in [28.0%, 68.6%)
+    tier3_local            flags  21.1%   judge SHIPS but truth BLOCKS for T in [21.1%, 68.6%)
+
+    For ANY threshold between 28.0% and 68.6%,
+    all three judges ship a release that should have been blocked.
+    That band is 40.6 percentage points wide.
+
+========================================================================================
+4c. ROGAN-GLADEN CORRECTION
+    Judges are poor gates. Are they usable as meters, if calibrated?
+
+    *** READ THIS BEFORE USING THE NUMBERS BELOW. ***
+    Calibrating TPR and TNR on the same sample whose flag rate is then
+    corrected is CIRCULAR. Substituting flag = TPR*p + (1-TNR)*(1-p)
+    into the estimator returns p exactly, as algebra, for any judge
+    however bad. The point estimates below are therefore an identity
+    check on the implementation, NOT evidence that the method works.
+    Only the interval width is informative here: it says how precisely
+    a calibration set of this size pins the rate down.
+
+    The non-circular version is calibrate-on-dev, apply-to-test, and it
+    runs from `--split test`. That is the number the paper reports.
+
+    judge                   flag    TPR    TNR      J  corrected            95% CI
+    tier1_paid             19.6%  0.253  0.930  0.183      68.6%   [ 64.5%,  72.7%]
+    tier2_hosted_open      28.0%  0.349  0.868  0.217      68.1%   [ 63.8%,  72.2%]
+    tier3_local            21.1%  0.269  0.916  0.184      68.5%   [ 64.5%,  72.8%]
+
+    true rate for comparison: 68.6%
+    J = Youden's J = TPR + TNR - 1, the estimator's denominator.
+    A small J means the correction is arithmetically unstable, so read
+    the interval rather than the point estimate.
+
+    --- NON-CIRCULAR: TPR and TNR calibrated on DEV, applied to TEST ---
+    judge                 dev TPR  dev TNR  test flag   estimate    true   error
+    tier1_paid              0.260    0.949      19.6%      69.1%   68.6%   +0.5pp
+    tier2_hosted_open       0.372    0.874      28.0%      62.7%   68.6%   -5.9pp
+    tier3_local             0.327    0.926      21.1%      54.1%   68.6%  -14.5pp
+
+    This one is a real test: the calibration never saw these items.
+
+========================================================================================
+4d. STRATIFIED BY HOW MUCH THE HUMANS AGREED
+
+    unanimous 81, disagreed 215, single annotator 79, no annotation 113
+
+    judge                       unanimous        disagreed   single annotat    no annotation
+    tier1_paid              50.4% (n=242)    26.1% (n=641)    34.3% (n=236)    91.4% (n=337)
+    tier2_hosted_open       44.7% (n=235)    41.1% (n=615)    32.3% (n=235)    88.4% (n=336)
+    tier3_local             39.7% (n=237)    32.2% (n=622)    28.7% (n=237)    94.3% (n=332)
+
+    Raw agreement per stratum. A judge that errs where the experts also
+    disagreed is behaving defensibly; one that errs on the unanimous
+    stratum is not, and that column is the one to argue from.
+
+* auxiliary, never pooled with the arms.
