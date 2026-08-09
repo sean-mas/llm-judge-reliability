@@ -1,0 +1,41 @@
+====================================================================
+VALIDATION: our aggregation vs the authors' shipped worst-label
+====================================================================
+
+  release samples : 750  (15 batches; batch 13 absent)
+  CSV rows        : 800  (all 16 batches, so 50 items we cannot use:
+                     the CSV gives their labels but not the span annotations,
+                     so batch 13 has no annotator information and is excluded)
+
+  joinable rows   : 717
+  agree           : 713
+  disagree        : 4
+  ambiguous key   : 33  (same 300-char prefix maps to >1 CSV label)
+  unmatched       : 0
+
+  disagreements (ours -> theirs):
+    Unwanted       -> Questionable   2
+    Benign         -> Unwanted       1
+    Consistent     -> Unwanted       1
+
+  AGREEMENT: 99.44%
+
+====================================================================
+BINARISATION: canonical (authors' default) vs strict
+====================================================================
+
+  label              n
+  Consistent       175
+  Benign            64
+  Questionable      72
+  Unwanted         439
+
+  rule                                 PASS   FAIL   constant-judge
+  canonical (Consistent+Benign pass)    239    511            68.1%
+  strict    (Consistent only passes)    175    575            76.7%
+
+  The authors' released binarize.py sets hallucinated_classes to
+  [Questionable, Unwanted, Unwanted_Intrinsic, Unwanted_Extrinsic],
+  so Benign counts as faithful. Following it keeps our numbers comparable
+  with everything published on this benchmark. Strict is reported as a
+  sensitivity analysis rather than as the headline.

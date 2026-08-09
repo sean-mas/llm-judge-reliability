@@ -1,0 +1,73 @@
+========================================================================================
+PRODUCTION ANALYSIS  |  split=dev  |  262 items  |  scheme U+Q
+========================================================================================
+
+4a. DETECTION BY SEVERITY LEVEL
+    Of the items at each human severity level, how many did the judge flag?
+
+    items per level: Consistent 62, Benign 24, Questionable 27, Unwanted 149
+
+    judge                     Consistent          Benign    Questionable        Unwanted
+    tier1_paid               5% (10/184)       4% (3/72)       1% (1/81)   31% (136/445)
+    tier2_hosted_open       13% (23/183)      13% (9/71)     14% (11/78)   41% (180/436)
+    tier3_local              8% (14/186)       7% (5/71)       8% (6/79)   37% (158/423)
+   *tier2_free                11% (7/62)      12% (3/24)       8% (2/26)    30% (44/148)
+
+    Consistent and Benign are faithful under U+Q, so a LOW number is correct.
+    Questionable and Unwanted are unfaithful, so a HIGH number is correct.
+
+========================================================================================
+4b. RELEASE-GATE THRESHOLD SIMULATION
+    A gate blocks the release when the flagged share exceeds a threshold T.
+    The truth would block whenever T < the real unfaithful rate.
+
+    true unfaithful rate ......... 67.2%
+    tier1_paid             flags  19.2%   judge SHIPS but truth BLOCKS for T in [19.2%, 67.2%)
+    tier2_hosted_open      flags  29.0%   judge SHIPS but truth BLOCKS for T in [29.0%, 67.2%)
+    tier3_local            flags  24.1%   judge SHIPS but truth BLOCKS for T in [24.1%, 67.2%)
+
+    For ANY threshold between 29.0% and 67.2%,
+    all three judges ship a release that should have been blocked.
+    That band is 38.1 percentage points wide.
+
+========================================================================================
+4c. ROGAN-GLADEN CORRECTION
+    Judges are poor gates. Are they usable as meters, if calibrated?
+
+    *** READ THIS BEFORE USING THE NUMBERS BELOW. ***
+    Calibrating TPR and TNR on the same sample whose flag rate is then
+    corrected is CIRCULAR. Substituting flag = TPR*p + (1-TNR)*(1-p)
+    into the estimator returns p exactly, as algebra, for any judge
+    however bad. The point estimates below are therefore an identity
+    check on the implementation, NOT evidence that the method works.
+    Only the interval width is informative here: it says how precisely
+    a calibration set of this size pins the rate down.
+
+    The non-circular version is calibrate-on-dev, apply-to-test, and it
+    runs from `--split test`. That is the number the paper reports.
+
+    judge                   flag    TPR    TNR      J  corrected            95% CI
+    tier1_paid             19.2%  0.260  0.949  0.210      67.3%   [ 61.7%,  72.8%]
+    tier2_hosted_open      29.0%  0.372  0.874  0.246      66.9%   [ 61.1%,  72.6%]
+    tier3_local            24.1%  0.327  0.926  0.253      66.1%   [ 60.5%,  71.7%]
+
+    true rate for comparison: 67.2%
+    J = Youden's J = TPR + TNR - 1, the estimator's denominator.
+    A small J means the correction is arithmetically unstable, so read
+    the interval rather than the point estimate.
+
+========================================================================================
+4d. STRATIFIED BY HOW MUCH THE HUMANS AGREED
+
+    unanimous 46, disagreed 101, single annotator 53, no annotation 62
+
+    judge                       unanimous        disagreed   single annotat    no annotation
+    tier1_paid              52.6% (n=137)    23.5% (n=302)    39.6% (n=159)    94.6% (n=184)
+    tier2_hosted_open       59.1% (n=132)    36.7% (n=294)    42.1% (n=159)    87.4% (n=183)
+    tier3_local             56.2% (n=128)    30.4% (n=289)    44.9% (n=156)    92.5% (n=186)
+
+    Raw agreement per stratum. A judge that errs where the experts also
+    disagreed is behaving defensibly; one that errs on the unanimous
+    stratum is not, and that column is the one to argue from.
+
+* auxiliary, never pooled with the arms.

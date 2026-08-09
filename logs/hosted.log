@@ -1,0 +1,232 @@
+[2026-08-08 13:18:28] tier=hosted split=all repeats=3 attempt=1
+judge      : tier2_hosted_open (gpt-oss:120b-cloud, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 0
+to request : 2250
+
+     25/2250 (  1.1%)  parse failures: 1
+     50/2250 (  2.2%)  parse failures: 1
+     75/2250 (  3.3%)  parse failures: 1
+    100/2250 (  4.4%)  parse failures: 1
+    125/2250 (  5.6%)  parse failures: 1
+    150/2250 (  6.7%)  parse failures: 1
+    175/2250 (  7.8%)  parse failures: 1
+    200/2250 (  8.9%)  parse failures: 1
+    225/2250 ( 10.0%)  parse failures: 1
+    250/2250 ( 11.1%)  parse failures: 1
+    275/2250 ( 12.2%)  parse failures: 1
+    300/2250 ( 13.3%)  parse failures: 1
+    325/2250 ( 14.4%)  parse failures: 1
+    350/2250 ( 15.6%)  parse failures: 1
+    375/2250 ( 16.7%)  parse failures: 1
+    400/2250 ( 17.8%)  parse failures: 1
+    425/2250 ( 18.9%)  parse failures: 1
+    450/2250 ( 20.0%)  parse failures: 1
+    475/2250 ( 21.1%)  parse failures: 4
+    500/2250 ( 22.2%)  parse failures: 4
+    525/2250 ( 23.3%)  parse failures: 4
+    550/2250 ( 24.4%)  parse failures: 5
+    575/2250 ( 25.6%)  parse failures: 7
+    600/2250 ( 26.7%)  parse failures: 7
+    625/2250 ( 27.8%)  parse failures: 7
+    650/2250 ( 28.9%)  parse failures: 8
+    675/2250 ( 30.0%)  parse failures: 8
+    700/2250 ( 31.1%)  parse failures: 8
+    725/2250 ( 32.2%)  parse failures: 8
+    750/2250 ( 33.3%)  parse failures: 8
+    775/2250 ( 34.4%)  parse failures: 10
+    800/2250 ( 35.6%)  parse failures: 10
+    825/2250 ( 36.7%)  parse failures: 10
+    850/2250 ( 37.8%)  parse failures: 11
+    875/2250 ( 38.9%)  parse failures: 11
+    900/2250 ( 40.0%)  parse failures: 11
+    925/2250 ( 41.1%)  parse failures: 11
+    950/2250 ( 42.2%)  parse failures: 11
+    975/2250 ( 43.3%)  parse failures: 11
+   1000/2250 ( 44.4%)  parse failures: 11
+   1025/2250 ( 45.6%)  parse failures: 11
+   1050/2250 ( 46.7%)  parse failures: 12
+   1075/2250 ( 47.8%)  parse failures: 13
+   1100/2250 ( 48.9%)  parse failures: 13
+   1125/2250 ( 50.0%)  parse failures: 13
+   1150/2250 ( 51.1%)  parse failures: 13
+   1175/2250 ( 52.2%)  parse failures: 13
+   1200/2250 ( 53.3%)  parse failures: 13
+   1225/2250 ( 54.4%)  parse failures: 16
+   1250/2250 ( 55.6%)  parse failures: 16
+   1275/2250 ( 56.7%)  parse failures: 19
+   1300/2250 ( 57.8%)  parse failures: 19
+   1325/2250 ( 58.9%)  parse failures: 19
+   1350/2250 ( 60.0%)  parse failures: 19
+   1375/2250 ( 61.1%)  parse failures: 22
+   1400/2250 ( 62.2%)  parse failures: 22
+   1425/2250 ( 63.3%)  parse failures: 22
+   1450/2250 ( 64.4%)  parse failures: 23
+   1475/2250 ( 65.6%)  parse failures: 24
+   1500/2250 ( 66.7%)  parse failures: 24
+   1525/2250 ( 67.8%)  parse failures: 25
+   1550/2250 ( 68.9%)  parse failures: 27
+   1575/2250 ( 70.0%)  parse failures: 30
+   1600/2250 ( 71.1%)  parse failures: 31
+   1625/2250 ( 72.2%)  parse failures: 31
+   1650/2250 ( 73.3%)  parse failures: 31
+   1675/2250 ( 74.4%)  parse failures: 31
+   1700/2250 ( 75.6%)  parse failures: 32
+   1725/2250 ( 76.7%)  parse failures: 33
+   1750/2250 ( 77.8%)  parse failures: 37
+
+ABORTED after 1774 of 2250: tier2_hosted_open: rate limited or quota exhausted (429). {"error":"you (seankresspm) have reached your session usage limit, upgrade for higher limits: https://ollama.com/upgrade (ref: 26ea75c6-e6c9-4fde-812d-cb8480f12a8d)"}
+
+Nothing is lost. Fix the cause and re-run; the store resumes.
+[2026-08-08 17:26:14] tier=hosted exit=1, retry in 120s
+[2026-08-08 17:28:14] tier=hosted split=all repeats=3 attempt=2
+judge      : tier2_hosted_open (gpt-oss:120b-cloud, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 1774
+to request : 476
+
+
+ABORTED after 0 of 476: tier2_hosted_open: rate limited or quota exhausted (429). {"error":"you (seankresspm) have reached your session usage limit, upgrade for higher limits: https://ollama.com/upgrade (ref: c2688d05-41fc-492e-939a-bbf0cc455c94)"}
+
+Nothing is lost. Fix the cause and re-run; the store resumes.
+[2026-08-08 17:28:14] tier=hosted exit=1, retry in 120s
+[2026-08-08 17:30:14] tier=hosted split=all repeats=3 attempt=3
+judge      : tier2_hosted_open (gpt-oss:120b-cloud, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 1774
+to request : 476
+
+
+ABORTED after 0 of 476: tier2_hosted_open: rate limited or quota exhausted (429). {"error":"you (seankresspm) have reached your session usage limit, upgrade for higher limits: https://ollama.com/upgrade (ref: e509b8e8-344b-45f9-b9f9-f0efe9887193)"}
+
+Nothing is lost. Fix the cause and re-run; the store resumes.
+[2026-08-08 17:30:15] tier=hosted exit=1, retry in 120s
+[2026-08-08 17:32:15] tier=hosted split=all repeats=3 attempt=4
+judge      : tier2_hosted_open (gpt-oss:120b-cloud, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 1774
+to request : 476
+
+
+ABORTED after 0 of 476: tier2_hosted_open: rate limited or quota exhausted (429). {"error":"you (seankresspm) have reached your session usage limit, upgrade for higher limits: https://ollama.com/upgrade (ref: cda97548-b416-4a10-8b3a-75afc722e4b1)"}
+
+Nothing is lost. Fix the cause and re-run; the store resumes.
+[2026-08-08 17:32:16] tier=hosted exit=1, retry in 120s
+[2026-08-08 17:34:16] tier=hosted split=all repeats=3 attempt=5
+judge      : tier2_hosted_open (gpt-oss:120b-cloud, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 1774
+to request : 476
+
+
+ABORTED after 0 of 476: tier2_hosted_open: rate limited or quota exhausted (429). {"error":"you (seankresspm) have reached your session usage limit, upgrade for higher limits: https://ollama.com/upgrade (ref: 3a9174e3-126c-4ac0-97b2-0bd5bc4362fa)"}
+
+Nothing is lost. Fix the cause and re-run; the store resumes.
+[2026-08-08 17:34:17] tier=hosted exit=1, retry in 120s
+[2026-08-08 17:36:17] tier=hosted split=all repeats=3 attempt=6
+judge      : tier2_hosted_open (gpt-oss:120b-cloud, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 1774
+to request : 476
+
+
+ABORTED after 0 of 476: tier2_hosted_open: rate limited or quota exhausted (429). {"error":"you (seankresspm) have reached your session usage limit, upgrade for higher limits: https://ollama.com/upgrade (ref: fc4cd21b-202b-45c7-8e16-b963e9a2417f)"}
+
+Nothing is lost. Fix the cause and re-run; the store resumes.
+[2026-08-08 17:36:18] tier=hosted exit=1, retry in 120s
+[2026-08-08 17:38:18] tier=hosted split=all repeats=3 attempt=7
+judge      : tier2_hosted_open (gpt-oss:120b-cloud, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 1774
+to request : 476
+
+
+ABORTED after 0 of 476: tier2_hosted_open: rate limited or quota exhausted (429). {"error":"you (seankresspm) have reached your session usage limit, upgrade for higher limits: https://ollama.com/upgrade (ref: 278ce128-a778-4163-b132-8a1d3682bde1)"}
+
+Nothing is lost. Fix the cause and re-run; the store resumes.
+[2026-08-08 17:38:18] tier=hosted exit=1, retry in 120s
+[2026-08-08 17:40:18] tier=hosted split=all repeats=3 attempt=8
+judge      : tier2_hosted_open (gpt-oss:120b-cloud, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 1774
+to request : 476
+
+
+ABORTED after 0 of 476: tier2_hosted_open: rate limited or quota exhausted (429). {"error":"you (seankresspm) have reached your session usage limit, upgrade for higher limits: https://ollama.com/upgrade (ref: 5cd9620d-f157-4f98-a533-74847a08252d)"}
+
+Nothing is lost. Fix the cause and re-run; the store resumes.
+[2026-08-08 17:40:19] tier=hosted exit=1, retry in 120s
+[2026-08-08 17:42:19] tier=hosted split=all repeats=3 attempt=9
+judge      : tier2_hosted_open (gpt-oss:120b-cloud, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 1774
+to request : 476
+
+
+ABORTED after 0 of 476: tier2_hosted_open: rate limited or quota exhausted (429). {"error":"you (seankresspm) have reached your session usage limit, upgrade for higher limits: https://ollama.com/upgrade (ref: 98d037a5-5287-49e0-8bc6-66e9d3baecd8)"}
+
+Nothing is lost. Fix the cause and re-run; the store resumes.
+[2026-08-08 17:42:20] tier=hosted exit=1, retry in 120s
+[2026-08-08 17:44:20] tier=hosted split=all repeats=3 attempt=10
+judge      : tier2_hosted_open (gpt-oss:120b-cloud, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 1774
+to request : 476
+
+
+ABORTED after 0 of 476: tier2_hosted_open: rate limited or quota exhausted (429). {"error":"you (seankresspm) have reached your session usage limit, upgrade for higher limits: https://ollama.com/upgrade (ref: 35637595-59b1-4a43-a2ff-ad4b3e000309)"}
+
+Nothing is lost. Fix the cause and re-run; the store resumes.
+[2026-08-08 17:44:21] tier=hosted exit=1, retry in 120s
+[2026-08-08 17:46:21] tier=hosted GAVE UP after 10 attempts
+[2026-08-08 21:43:21] tier=hosted split=all repeats=3 attempt=1
+judge      : tier2_hosted_open (gpt-oss:120b-cloud, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 1774
+to request : 476
+
+     25/476 (  5.3%)  parse failures: 0
+     50/476 ( 10.5%)  parse failures: 0
+     75/476 ( 15.8%)  parse failures: 1
+    100/476 ( 21.0%)  parse failures: 8
+    125/476 ( 26.3%)  parse failures: 10
+    150/476 ( 31.5%)  parse failures: 10
+    175/476 ( 36.8%)  parse failures: 11
+    200/476 ( 42.0%)  parse failures: 11
+    225/476 ( 47.3%)  parse failures: 13
+    250/476 ( 52.5%)  parse failures: 13
+    275/476 ( 57.8%)  parse failures: 14
+    300/476 ( 63.0%)  parse failures: 16
+    325/476 ( 68.3%)  parse failures: 16
+    350/476 ( 73.5%)  parse failures: 18
+    375/476 ( 78.8%)  parse failures: 19
+    400/476 ( 84.0%)  parse failures: 20
+    425/476 ( 89.3%)  parse failures: 22
+    450/476 ( 94.5%)  parse failures: 22
+    475/476 ( 99.8%)  parse failures: 22
+    476/476 (100.0%)  parse failures: 22
+
+done. 476 requested, 22 unparseable (4.6%).
+[2026-08-08 22:49:40] tier=hosted COMPLETE after 1 attempt(s)

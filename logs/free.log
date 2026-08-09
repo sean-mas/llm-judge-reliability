@@ -1,0 +1,32 @@
+[2026-08-08 13:18:28] tier=free split=dev repeats=1 attempt=1
+judge      : tier2_free (gemini-3.5-flash-lite, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : dev, 262 items x 1 repeats
+labels     : Consistent 62, Benign 24, Questionable 27, Unwanted 149
+cached     : 2
+to request : 260
+
+     25/260 (  9.6%)  parse failures: 0
+     50/260 ( 19.2%)  parse failures: 0
+     75/260 ( 28.8%)  parse failures: 0
+    100/260 ( 38.5%)  parse failures: 0
+    125/260 ( 48.1%)  parse failures: 0
+    150/260 ( 57.7%)  parse failures: 1
+    175/260 ( 67.3%)  parse failures: 1
+    200/260 ( 76.9%)  parse failures: 1
+    225/260 ( 86.5%)  parse failures: 2
+    250/260 ( 96.2%)  parse failures: 2
+    260/260 (100.0%)  parse failures: 2
+
+done. 260 requested, 2 unparseable (0.8%).
+[2026-08-08 13:38:44] tier=free COMPLETE after 1 attempt(s)
+[2026-08-08 21:43:21] tier=free split=dev repeats=1 attempt=1
+judge      : tier2_free (gemini-3.5-flash-lite, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : dev, 262 items x 1 repeats
+labels     : Consistent 62, Benign 24, Questionable 27, Unwanted 149
+cached     : 262
+to request : 0
+
+nothing to do.
+[2026-08-08 21:43:22] tier=free COMPLETE after 1 attempt(s)

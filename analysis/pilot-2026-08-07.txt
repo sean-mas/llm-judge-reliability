@@ -1,0 +1,928 @@
+==============================================================================
+PILOT: 20 stratified dev items x 3 arms
+==============================================================================
+
+prompt v0.2-dev / 3b14635aa1c3eecd
+
+judge                model_version               agree    TPR    TNR  flag%      ms   out
+------------------------------------------------------------------------------
+tier1_paid           claude-opus-5              12/20   2/10   10/10      10%   4213ms   146
+tier2_hosted_open    gpt-oss:120b-cloud         14/20   4/10   10/10      20%   5770ms   419
+tier3_local          gpt-oss:20b                13/20   3/10   10/10      15%  12929ms   342
+
+TPR = of the truly unfaithful, how many were caught.
+TNR = of the truly faithful, how many were correctly passed.
+A judge that flags nothing scores TNR 10/10 and TPR 0/10.
+
+all three wrong :  6  <- rubric suspects, read these first
+judges disagree :  2  <- read these second
+all three right : 12  <- skim only
+
+==============================================================================
+ALL THREE WRONG
+==============================================================================
+
+------------------------------------------------------------------------------
+batch_10:23  [Questionable]  reference=UNFAITHFUL  summarizer=cohere/command-r-08-2024
+------------------------------------------------------------------------------
+    SOURCE : hong kong ( cnn ) six people were hurt after an explosion at a 
+             controversial chemical plant in china 's southeastern fujian
+             province sparked a huge fire , provincial authorities told state
+             media . the plant , located in zhangzhou city , produces
+             paraxylene ( px ) , a reportedly carcinogenic chemical used in
+             the production of polyester films and fabrics . the blast
+             occurred at an oil storage facility monday night after an oil
+             leak , though local media has not reported any toxic chemical
+             spill . five out of six people were injured by broken glass and
+             have been sent to the hospital for treatment , xinhua news agency
+             reported . more than 600 firefighters were sent to battle the
+             blaze and the fire is now under control , the zhangzhou fire
+             department wrote on their official microblogging account tuesday
+             morning . residents living close to the plant had heard the
+             explosion and took to weibo to post photos of the fire . one user
+             wrote that he heard a loud blast and felt slight tremors . the
+             plant was hit by another explosion in july 2013 , although there
+             were no reports of casualties or toxic leaks at the time . though
+             demonstrations are illegal in china , the construction of px
+             plants has sparked protests , which have occasionally turned
+             violent , in several cities in recent years . the zhangzhou plant
+             was slated for xiamen -- a densely populated city in the
+             southeast of the country . however , it provoked an angry
+             backlash in 2007 due to pollution concerns and prompted the local
+             government to relocate the factory to its current , more remote
+             location .
+    SUMMARY: An explosion at a chemical plant in China's Fujian province 
+             injured six people and caused a large fire. The plant produces
+             paraxylene (PX), a potentially carcinogenic substance. The blast
+             occurred at an oil storage facility due to an oil leak, but no
+             toxic chemical spill was reported. Five of the injured were hurt
+             by broken glass and hospitalised. Over 600 firefighters
+             controlled the blaze. The plant has a history of protests due to
+             pollution concerns, and a previous explosion in 2013.
+
+  HUMAN ANNOTATORS
+    [Questionable] Erana
+      objected to: ' history of protests'  (summary chars 409-429)
+      against source: 'provoked an angry backlash'
+              why: an angry backlash is singular, does this make for a 
+                   history of protests? is all backlash a protest?
+    [Benign] Manveer
+      objected to: 'The plant has a history of protests due to pollution concerns, and a previous explosion in 2013.'  (summary chars 394-490)
+              why: the source doesn't say the protests were due to the 
+                   previous explosion
+    [Benign] Vivek
+      objected to: 'The plant has a history of protests due to pollution concerns, and a previous explosion in 2013.'  (summary chars 394-490)
+              why: exact reason for protest unclear
+    [Questionable] Erana
+      objected to: 'The plant has a history of protests due to pollution concerns, and a previous explosion in 2013.'  (summary chars 394-490)
+      against source: '\nthough demonstrations are illegal in china , the construction of px plants has sparked protests , which have occasionally turned violent , in several cities in recent years .'
+              why: not sure if summary implies there were protests related to 
+                   the 2013 explosion
+
+  JUDGES
+  X tier1_paid         faithful    span=''
+              reason: All claims—injuries, PX production, oil leak cause, no 
+                      toxic spill, five hurt by glass, 600+ firefighters, 2013
+                      explosion, and protests over pollution—are supported by
+                      the source.
+  X tier2_hosted_open  faithful    span=''
+              reason: All substantive claims in the summary are supported by 
+                      the source document.
+  X tier3_local        faithful    span=''
+              reason: All substantive claims in the summary are directly 
+                      supported by information in the source document.
+
+------------------------------------------------------------------------------
+batch_10:26  [Questionable]  reference=UNFAITHFUL  summarizer=meta-llama/Meta-Llama-3.1-70B-Instruct
+------------------------------------------------------------------------------
+    SOURCE : hong kong ( cnn ) six people were hurt after an explosion at a 
+             controversial chemical plant in china 's southeastern fujian
+             province sparked a huge fire , provincial authorities told state
+             media . the plant , located in zhangzhou city , produces
+             paraxylene ( px ) , a reportedly carcinogenic chemical used in
+             the production of polyester films and fabrics . the blast
+             occurred at an oil storage facility monday night after an oil
+             leak , though local media has not reported any toxic chemical
+             spill . five out of six people were injured by broken glass and
+             have been sent to the hospital for treatment , xinhua news agency
+             reported . more than 600 firefighters were sent to battle the
+             blaze and the fire is now under control , the zhangzhou fire
+             department wrote on their official microblogging account tuesday
+             morning . residents living close to the plant had heard the
+             explosion and took to weibo to post photos of the fire . one user
+             wrote that he heard a loud blast and felt slight tremors . the
+             plant was hit by another explosion in july 2013 , although there
+             were no reports of casualties or toxic leaks at the time . though
+             demonstrations are illegal in china , the construction of px
+             plants has sparked protests , which have occasionally turned
+             violent , in several cities in recent years . the zhangzhou plant
+             was slated for xiamen -- a densely populated city in the
+             southeast of the country . however , it provoked an angry
+             backlash in 2007 due to pollution concerns and prompted the local
+             government to relocate the factory to its current , more remote
+             location .
+    SUMMARY: Here is a concise summary of the passage: A chemical plant in 
+             Zhangzhou City, Fujian Province, China, producing paraxylene
+             (PX), a potentially carcinogenic chemical, exploded and caught
+             fire on Monday night, injuring 6 people. The blast occurred at an
+             oil storage facility after an oil leak, but no toxic chemical
+             spill was reported. Over 600 firefighters were deployed to
+             control the fire, which is now under control. The plant has a
+             history of controversy, including a previous explosion in 2013
+             and protests in 2007 over pollution concerns, which led to its
+             relocation from a densely populated city to a more remote area.
+
+  HUMAN ANNOTATORS
+    [Questionable] Erana
+      objected to: 'A chemical plant in Zhangzhou City, Fujian Province, China, producing paraxylene (PX), a potentially carcinogenic chemical, exploded and caught fire on Monday night,'  (summary chars 43-208)
+      against source: "hong kong ( cnn ) six people were hurt after an explosion at a controversial chemical plant in china 's southeastern fujian province sparked a huge fire , provincial authorities told state media ."
+              why: does sparked a huge fire imply necessarily the plant 
+                   itself caught fire?
+    [Benign] Erana
+      objected to: 'protests in 2007'  (summary chars 503-519)
+      against source: 'an angry backlash in 2007'
+              why: assumes angry backlash is protests
+    [Benign] Vivek
+      objected to: 'protests in 2007'  (summary chars 503-519)
+      against source: 'angry backlash in 2007'
+              why: backlash and protests are not the same
+
+  JUDGES
+  X tier1_paid         faithful    span=''
+              reason: All claims—location, chemical, injuries, cause, 
+                      firefighter count, 2013 explosion, and 2007 relocation
+                      protests—are supported by the source.
+  X tier2_hosted_open  faithful    span=''
+              reason: All substantive claims in the summary are supported by 
+                      the source document.
+  X tier3_local        faithful    span=''
+              reason: All substantive claims in the summary are directly 
+                      supported by information in the source document.
+
+------------------------------------------------------------------------------
+batch_10:41  [Questionable]  reference=UNFAITHFUL  summarizer=microsoft/Phi-3-mini-4k-instruct
+------------------------------------------------------------------------------
+    SOURCE : the city of eugene in the united states has been awarded the 
+             rights to host the 2021 iaaf world championships . the decision
+             was taken by the international association of athletics
+             federations council , who decided to bypass the usual bidding
+             process because of what it saw as a ` unique strategic
+             opportunity to host the iaaf world championships for the first
+             time in the usa ' . eugene failed last november in its bid to
+             host the 2019 event , which was instead awarded to doha , but a
+             recent presentation to the iaaf persuaded the governing body the
+             city has what it takes to stage a world championships . eugene in
+             the united states has been awarded the rights to host the 2021
+             iaaf world championships qatar captial doha , home to the aspire
+             dome , beat eugene to host the 2019 event ` in granting the
+             championships to eugene the iaaf council have made a clear choice
+             on a strategic decision that enables us to take advantage of a
+             unique opportunity that may never arise again , whereby public
+             authorities , the private sector , the national olympic committee
+             , nbc and a particularly enthusiastic public are joining forces ,
+             ' iaaf president lamine diack said in a statement . ` although
+             this decision departs from the usual procedure , i am delighted
+             that my council colleagues understood the enormous opportunity
+             presented to us to access a key market and have taken a decision
+             in the interest of the global development of our sport . ' the
+             2007 world championships held in osaka , japan was also awarded
+             without a bidding process . mo farah won gold in the men 's 10000
+             metres during the 2016 iaaf world athletics championships in
+             moscow
+    SUMMARY: The International Association of Athletics Federations (IAAF) 
+             Council awarded the 2021 World Championships to Eugene, United
+             States, bypassing the usual bidding process due to a unique
+             strategic opportunity. This decision was influenced by Eugene's
+             presentation to the IAAF, which convinced the governing body that
+             the city is capable of hosting the event. The 2019 event was
+             previously awarded to Doha, Qatar. The IAAF Council's decision to
+             grant Eugene the 2021 event was seen as a strategic move to
+             access a key market and promote the global development of the
+             sport. This is not the first time a World Championships was
+             awarded without a bidding process, as the 2007 event in Osaka,
+             Japan was also granted in this manner.
+
+  HUMAN ANNOTATORS
+    [Questionable] Erana
+      objected to: 'The International Association of Athletics Federations (IAAF)'  (summary chars 1-62)
+              why: reasoned from source
+    [Questionable] Manveer
+      objected to: 'The International Association of Athletics Federations (IAAF)'  (summary chars 1-62)
+              why: the source doesn't exactly connect the acronym, but this 
+                   seems reasonable
+
+  JUDGES
+  X tier1_paid         faithful    span=''
+              reason: All claims in the summary are supported by the source 
+                      document.
+  X tier2_hosted_open  faithful    span=''
+              reason: All substantive claims in the summary are directly 
+                      supported by the source document.
+  X tier3_local        faithful    span=''
+              reason: All substantive claims in the summary are directly 
+                      supported by information in the source document.
+
+------------------------------------------------------------------------------
+batch_10:6  [Unwanted]  reference=UNFAITHFUL  summarizer=meta-llama/Meta-Llama-3.1-70B-Instruct
+------------------------------------------------------------------------------
+    SOURCE : The "black box" of the Su-24 jet was officially opened in Moscow 
+             on Friday in front of journalists and diplomats. Nikolai Primak,
+             head of the Russian investigation, said flight information
+             appeared to be missing. Data from the box could help resolve the
+             dispute over the jet's location when it was hit. An analysis is
+             expected to be released next week. The downing of the jet plunged
+             relations between Russia and Turkey into crisis, with Moscow
+             imposing sanctions in response. Turkey insists that the jet, from
+             the Russian air contingent deployed in Syria in support of
+             President Bashar al-Assad, ignored warnings to leave its
+             airspace. Russia says it was shot down within Syrian airspace and
+             President Vladimir Putin vented his anger at Turkey's government
+             again on Thursday, accusing it of subservience to the US and of
+             "creeping Islamisation". What we know about how the Su-24 was
+             downedHow Russia's sanctions could hit TurkeyThe war of words as
+             it eruptedThe two countries are heavily involved in Syria but
+             take radically different positions despite both being ostensibly
+             opposed to the Islamic State (IS) militant group. The Su-24 was
+             shot down by F-16 fighters on 24 November. Both crew members
+             ejected but the pilot was killed, apparently by militants on the
+             ground while the navigator was rescued. A Russian marine sent to
+             rescue the crew was also killed and a helicopter destroyed on the
+             ground. Russia has demanded an apology from Turkey and in the
+             meantime has imposed sanctions including a ban on package
+             holidays, which could cost Turkey billions of dollars.
+    SUMMARY: Here is a concise summary of the passage: The "black box" of the 
+             downed Su-24 jet was opened in Moscow, with initial findings
+             suggesting missing flight information. The data analysis is
+             expected next week and may help resolve the dispute over the
+             jet's location when it was hit. The incident has strained
+             relations between Russia and Turkey, with Russia imposing
+             sanctions in response to Turkey's claim that the jet ignored
+             warnings to leave its airspace. Russia maintains the jet was shot
+             down in Syrian airspace. The incident occurred on November 24,
+             resulting in the death of the pilot and a Russian marine, and has
+             led to a war of words between the two countries.
+
+  HUMAN ANNOTATORS
+    [Questionable] Erana
+      objected to: 'with initial findings suggesting missing flight information'  (summary chars 105-164)
+      against source: 'Nikolai Primak, head of the Russian investigation, said flight information appeared to be missing'
+              why: Source does not explicitly say Primak's findings were the 
+                   initial findings, also leaves out information on the source
+                   of these findings but uses the word "suggesting" so the
+                   implication of some potential ambiguity remains the same as
+                   in the source
+    [Unwanted, Unwanted.Intrinsic] Erana
+      objected to: 'The incident has strained relations between Russia and Turkey'  (summary chars 280-341)
+      against source: 'The downing of the jet plunged relations between Russia and Turkey into crisis'
+              why: Strained and plunged into crisis have very different 
+                   severities, thus meanings diverge
+    [Benign] Erana
+      objected to: "with Russia imposing sanctions in response to Turkey's claim that the jet ignored warnings to leave its airspace."  (summary chars 343-456)
+              why: Source says Russia imposed sanctions in response to the 
+                   shooting down of the jet, not necessarily in response to
+                   Turkey's claim about airspace warnings, but can reasonably
+                   assume it is a response to both
+    [Unwanted, Unwanted.Intrinsic] Erana
+      objected to: 'The incident occurred on November 24, resulting in the death of the pilot and a Russian marine, and has led to a war of words between the two countries.'  (summary chars 516-668)
+      against source: "What we know about how the Su-24 was downedHow Russia's sanctions could hit TurkeyThe war of words as it eruptedThe two countries are heavily involved in Syria but take radically different positions despite both being ostensibly opposed to the Islamic State (IS) militant group. The Su-24 was shot down by F-16 fighters on 24 November. Both crew members ejected but the pilot was killed, apparently by militants on the ground while the navigator was rescued. A Russian marine sent to rescue the crew was also killed and a helicopter destroyed on the ground. Russia has demanded an apology from Turkey and in the meantime has imposed sanctions including a ban on package holidays, which could cost Turkey billions of dollars."
+              why: Source does not establish what the war of words refers to 
+                   nor what led to it, meaning diverges as the deaths led to
+                   far more than just a war of words (ie. severe economic
+                   sanctions)
+    [Questionable] Manveer
+      objected to: "with Russia imposing sanctions in response to Turkey's claim that the jet ignored warnings to leave its airspace"  (summary chars 343-455)
+              why: it is questionable to say that the sanctions were in 
+                   response to the claim. The sanctions are in response to
+                   everything that has happened.
+    [Questionable] Manveer
+      objected to: 'with initial findings suggesting missing flight information. '  (summary chars 105-166)
+              why: should perhaps acknowledge that these are findings from a 
+                   russian investigator, who may be biased
+    [Questionable] Manveer
+      objected to: 'strained'  (summary chars 297-305)
+      against source: 'plunged'
+              why: the source says plunged, not strained, which is a weaker 
+                   claim
+
+  JUDGES
+  X tier1_paid         faithful    span=''
+              reason: All substantive claims—the black box opening, missing 
+                      flight data, upcoming analysis, sanctions, conflicting
+                      airspace claims, the 24 November date, and the deaths of
+                      the pilot and a Russian marine—are supported by the
+                      source.
+  X tier2_hosted_open  faithful    span=''
+              reason: All substantive claims in the summary are supported by 
+                      information in the source document.
+  X tier3_local        faithful    span=''
+              reason: All substantive claims in the summary are directly 
+                      supported by information in the source document.
+
+------------------------------------------------------------------------------
+batch_12:5  [Questionable]  reference=UNFAITHFUL  summarizer=meta-llama/Meta-Llama-3.1-8B-Instruct
+------------------------------------------------------------------------------
+    SOURCE : a species of whale that was feared to be extinct has been found 
+             washed up on a west australian beach , giving scientists an
+             opportunity to learn more about the mammal . the omura 's whale
+             was discovered on a remote exmouth beach , at the tip of the
+             state 's north west cape , after tropical cyclone olwyn tore
+             through the area last month . it is the first sighting of the
+             species in wa and only the second in australia . identifying the
+             5.68 m juvenile female was at first difficult for department of
+             parks and wildlife staff , who eventually confirmed it was an
+             omura 's whale with dna profiling . an omura 's whale was
+             discovered on a remote exmouth beach in wa ( pictured ) . it left
+             authorities confused as they struggled to identify the rare
+             species environment minister albert jacob said the find was `
+             highly significant ' for whale scientists because very little was
+             known about the species . ` omura 's whale was only described in
+             scientific journals for the first time in 2003 and is apparently
+             restricted to tropical and subtropical waters , ' he said . ` the
+             knowledge we gain from this whale will help to improve field
+             identification guides to better understand the whale 's regional
+             distribution . ' the species is usually found in indonesian
+             waters , the philippines and the sea of japan . omura 's whales
+             have a sleek body shape and several unique skeletal features ,
+             including 53 vertebrae and four digits on each pectoral fin . the
+             carcass has been buried and the skeleton will be recovered in a
+             few years for further scientific investigation and possibly for
+             public display in museums . the omura 's is usually found in
+             indonesian waters , the philippines and the sea of japan the
+             whale has a sleek body shape and several unique skeletal features
+             , including 60 vertebrae
+    SUMMARY: Here is a concise summary of the passage: A juvenile female 
+             Omura's whale, a species previously feared to be extinct, was
+             found washed up on a beach in Western Australia after a tropical
+             cyclone. This is the first sighting of the species in Western
+             Australia and only the second in Australia. The whale's DNA was
+             used to confirm its identity, and its carcass has been buried
+             with plans to recover the skeleton in a few years for further
+             scientific study and possible public display. The find is
+             significant for whale scientists, who know very little about the
+             species, which is typically found in Indonesian waters, the
+             Philippines, and the Sea of Japan.
+
+  HUMAN ANNOTATORS
+    [Questionable] Manveer
+      objected to: 'This is the first sighting of the species in Western Australia '  (summary chars 197-260)
+              why: the summary is assuming wa refers to Western Australia
+
+  JUDGES
+  X tier1_paid         faithful    span=''
+              reason: All claims in the summary — the species, location, 
+                      cyclone, DNA confirmation, burial and skeleton plans,
+                      significance, and distribution — are supported by the
+                      source.
+  X tier2_hosted_open  faithful    span=''
+              reason: All claims in the summary are supported by information 
+                      in the source document.
+  X tier3_local        faithful    span=''
+              reason: All substantive claims in the summary are directly 
+                      supported by information in the source document.
+
+------------------------------------------------------------------------------
+batch_1:0  [Unwanted]  reference=UNFAITHFUL  summarizer=mistralai/Mistral-7B-Instruct-v0.3
+------------------------------------------------------------------------------
+    SOURCE : Poseidon (film) . Poseidon grossed $ 181,674,817 at the 
+             worldwide box office on a budget of $ 160 million .
+    SUMMARY: The film "Poseidon" grossed $181,674,817 at the worldwide box 
+             office, with a production budget of $160 million.
+
+  HUMAN ANNOTATORS
+    [Unwanted, Unwanted.Intrinsic] forrest
+      objected to: 'production'  (summary chars 78-88)
+              why: "budget" (source) vs. "production budget" (summary) The 
+                   budget for a movie may also include non-production budget
+                   such as distribution, advertising.
+    [Unwanted, Unwanted.Intrinsic] Renyi Qu
+      objected to: 'production'  (summary chars 78-88)
+              why: "budget" (source) vs. "production budget" (summary) The 
+                   budget for a movie may also include non-production budget
+                   such as distribution, advertising.
+
+  JUDGES
+  X tier1_paid         faithful    span=''
+              reason: Both the gross figure and budget match the source 
+                      exactly.
+  X tier2_hosted_open  faithful    span=''
+              reason: The summary’s statements about the worldwide gross and 
+                      the $160 million budget are directly supported by the
+                      source.
+  X tier3_local        faithful    span=''
+              reason: The summary accurately reflects the gross and budget 
+                      figures stated in the source document.
+
+==============================================================================
+JUDGES DISAGREE
+==============================================================================
+
+------------------------------------------------------------------------------
+batch_10:27  [Questionable]  reference=UNFAITHFUL  summarizer=google/gemini-1.5-flash-001
+------------------------------------------------------------------------------
+    SOURCE : hong kong ( cnn ) six people were hurt after an explosion at a 
+             controversial chemical plant in china 's southeastern fujian
+             province sparked a huge fire , provincial authorities told state
+             media . the plant , located in zhangzhou city , produces
+             paraxylene ( px ) , a reportedly carcinogenic chemical used in
+             the production of polyester films and fabrics . the blast
+             occurred at an oil storage facility monday night after an oil
+             leak , though local media has not reported any toxic chemical
+             spill . five out of six people were injured by broken glass and
+             have been sent to the hospital for treatment , xinhua news agency
+             reported . more than 600 firefighters were sent to battle the
+             blaze and the fire is now under control , the zhangzhou fire
+             department wrote on their official microblogging account tuesday
+             morning . residents living close to the plant had heard the
+             explosion and took to weibo to post photos of the fire . one user
+             wrote that he heard a loud blast and felt slight tremors . the
+             plant was hit by another explosion in july 2013 , although there
+             were no reports of casualties or toxic leaks at the time . though
+             demonstrations are illegal in china , the construction of px
+             plants has sparked protests , which have occasionally turned
+             violent , in several cities in recent years . the zhangzhou plant
+             was slated for xiamen -- a densely populated city in the
+             southeast of the country . however , it provoked an angry
+             backlash in 2007 due to pollution concerns and prompted the local
+             government to relocate the factory to its current , more remote
+             location .
+    SUMMARY: An explosion at a chemical plant in Zhangzhou City, Fujian 
+             Province, China, injured six people and sparked a fire. The plant
+             produces paraxylene (PX), a chemical used in the production of
+             polyester films and fabrics. The explosion occurred at an oil
+             storage facility after an oil leak. The fire was put out by over
+             600 firefighters. The plant was previously slated for Xiamen, but
+             was relocated due to pollution concerns and protests.
+
+  HUMAN ANNOTATORS
+    [Benign] Erana
+      objected to: 'The fire was put out'  (summary chars 286-306)
+      against source: 'the fire is now under control'
+              why: assumes under control means put out
+    [Benign] Erana
+      objected to: 'protests'  (summary chars 425-433)
+      against source: 'an angry backlash'
+              why: protests vs angry backlash
+    [Questionable] Manveer
+      objected to: 'The fire was put out '  (summary chars 286-307)
+      against source: 'the fire is now under control '
+              why: the source doesn't exactly say the fire was put out, just 
+                   made under control
+    [Questionable] Vivek
+      objected to: 'fire was put out by over 600 firefighters'  (summary chars 290-331)
+      against source: 'fire is now under control'
+    [Benign] Vivek
+      objected to: 'protests'  (summary chars 425-433)
+      against source: 'backlash'
+              why: backlash is not same as protest
+
+  JUDGES
+  X tier1_paid         faithful    span=''
+              reason: All substantive claims (location, injuries, PX plant, 
+                      oil leak cause, 600 firefighters, relocation from Xiamen
+                      over pollution concerns) match the source; 'put out'
+                      versus 'under control' is a minor harmless paraphrase.
+    tier2_hosted_open  UNFAITHFUL  span='injured six people'
+              reason: The source says five out of six people were injured, 
+                      not that six people were injured.
+  X tier3_local        faithful    span=''
+              reason: All substantive claims in the summary are directly 
+                      supported by information in the source document.
+
+------------------------------------------------------------------------------
+batch_1:35  [Unwanted]  reference=UNFAITHFUL  summarizer=meta-llama/Meta-Llama-3.1-8B-Instruct
+------------------------------------------------------------------------------
+    SOURCE : As of 22 February 2020 , 77,984 cases have been confirmed , 
+             including in all provinces of China and more than two dozen other
+             countries .
+    SUMMARY: As of 22 February 2020, there were 77,984 confirmed cases of an 
+             illness, spread across all provinces of China and over 25 other
+             countries.
+
+  HUMAN ANNOTATORS
+    [Unwanted, Unwanted.Intrinsic] forrest
+      objected to: 'over 25'  (summary chars 114-121)
+      against source: 'more than two dozen '
+              why: more than two dozen (source) vs. over 25 (summary)
+    [Unwanted, Unwanted.Extrinsic] forrest
+      objected to: ' of an illness'  (summary chars 57-71)
+              why: the source does not say the cases are about an illness
+    [Unwanted, Unwanted.Extrinsic] Renyi Qu
+      objected to: 'over 25 other countries.'  (summary chars 114-138)
+              why: Again, "two dozen" is 24, not 25.
+    [Unwanted, Unwanted.Extrinsic] Renyi Qu
+      objected to: 'of an illness,'  (summary chars 58-72)
+              why: the source does not say the cases are about an illness
+
+  JUDGES
+  X tier1_paid         faithful    span=''
+              reason: The case count and geographic spread match the source; 
+                      "over 25 other countries" is a close paraphrase of "more
+                      than two dozen other countries" that does not change the
+                      reader's takeaway.
+    tier2_hosted_open  UNFAITHFUL  span='over 25 other countries'
+              reason: The summary states a specific number of countries (over 
+                      25) not directly supported by the source, which only
+                      says "more than two dozen".
+    tier3_local        UNFAITHFUL  span='over 25 other countries'
+              reason: The source only states "more than two dozen" other 
+                      countries, which does not specify the exact figure of
+                      over 25.
+
+==============================================================================
+ALL THREE RIGHT
+==============================================================================
+
+------------------------------------------------------------------------------
+batch_10:42  [Consistent]  reference=faithful  summarizer=Anthropic/claude-3-5-sonnet-20240620
+------------------------------------------------------------------------------
+    SOURCE : the city of eugene in the united states has been awarded the 
+             rights to host the 2021 iaaf world championships . the decision
+             was taken by the international association of athletics
+             federations council , who decided to bypass the usual bidding
+             process because of what it saw as a ` unique strategic o [...]
+    SUMMARY: Here's a concise summary of the passage, covering the core 
+             pieces of information: The city of Eugene, USA, has been awarded
+             the hosting rights for the 2021 IAAF World Championships. The
+             IAAF Council made this decision by bypassing the usual bidding
+             process, citing a unique opportunity to host the event in the USA
+             for the first time. Eugene had previously failed in its bid to
+             host the 2019 event, which was awarded to Doha, Qatar. IAAF
+             President Lamine Diack emphasized the strategic importance of
+             this decision, highlighting the collaboration between public
+             authorities, the private sector, the National Olympic Committee,
+             NBC, and public enthusiasm. This departure from the usual
+             procedure is aimed at accessing a key market and promoting global
+             development of the sport. It's noted that the 2007 World
+             Championships in Osaka, Japan, were also awarded without a
+             bidding process.
+
+  HUMAN ANNOTATORS
+    (none: no annotator marked a span, which is what makes it Consistent)
+
+  JUDGES
+    tier1_paid         faithful    span=''
+              reason: All claims in the summary are supported by the source 
+                      document.
+    tier2_hosted_open  faithful    span=''
+              reason: All substantive claims in the summary are directly 
+                      supported by statements in the source document.
+    tier3_local        faithful    span=''
+              reason: All substantive claims in the summary are supported by 
+                      information present in the source document.
+
+------------------------------------------------------------------------------
+batch_10:43  [Benign]  reference=faithful  summarizer=cohere/command-r-08-2024
+------------------------------------------------------------------------------
+    SOURCE : the city of eugene in the united states has been awarded the 
+             rights to host the 2021 iaaf world championships . the decision
+             was taken by the international association of athletics
+             federations council , who decided to bypass the usual bidding
+             process because of what it saw as a ` unique strategic o [...]
+    SUMMARY: The city of Eugene, USA, has been chosen to host the 2021 IAAF 
+             World Championships, bypassing the usual bidding process. This
+             decision was made by the IAAF Council to seize a strategic
+             opportunity to bring the event to the USA for the first time.
+             Eugene previously lost the bid for the 2019 event to Doha, Qatar,
+             but a recent presentation convinced the IAAF of the city's
+             capabilities. The IAAF President highlighted the unique
+             collaboration between various stakeholders and the chance to
+             access a key market. This is not the first time the Championships
+             have been awarded without a bidding process, as the 2007 event in
+             Osaka, Japan, was also granted in a similar manner.
+
+  HUMAN ANNOTATORS
+    [Benign] Erana
+      objected to: 'collaboration between various stakeholders '  (summary chars 428-471)
+      against source: 'whereby public authorities , the private sector , the national olympic committee , nbc and a particularly enthusiastic public are joining forces '
+              why: assumes stakeholders
+
+  JUDGES
+    tier1_paid         faithful    span=''
+              reason: All claims in the summary are supported by the source 
+                      document.
+    tier2_hosted_open  faithful    span=''
+              reason: All substantive statements in the summary are directly 
+                      supported by information in the source document.
+    tier3_local        faithful    span=''
+              reason: All substantive claims in the summary are directly 
+                      supported by information in the source document.
+
+------------------------------------------------------------------------------
+batch_10:44  [Benign]  reference=faithful  summarizer=Qwen/Qwen2.5-7B-Instruct
+------------------------------------------------------------------------------
+    SOURCE : the city of eugene in the united states has been awarded the 
+             rights to host the 2021 iaaf world championships . the decision
+             was taken by the international association of athletics
+             federations council , who decided to bypass the usual bidding
+             process because of what it saw as a ` unique strategic o [...]
+    SUMMARY: Eugene, Oregon has been awarded the rights to host the 2021 IAAF 
+             World Championships. This decision, made by the IAAF Council,
+             bypassed the usual bidding process due to seeing a "unique
+             strategic opportunity" to host the championships for the first
+             time in the USA. Despite failing in its bid for the 2019 event,
+             Eugene was successful after a recent presentation convinced the
+             governing body of its capabilities. The IAAF president
+             highlighted the strategic advantages of hosting in Eugene,
+             including support from public authorities, the private sector,
+             and NBC, emphasizing the potential for global growth in
+             athletics.
+
+  HUMAN ANNOTATORS
+    [Benign] Erana
+      objected to: 'emphasizing the potential for global growth in athletics.'  (summary chars 563-620)
+      against source: 'in the interest of the global development of our sport .'
+              why: correctly identifies the iaaf's sport as athletics
+    [Benign] Erana
+      objected to: 'Eugene, Oregon'  (summary chars 0-14)
+      against source: 'the city of eugene in the united states'
+              why: no mention of oregon in source
+    [Benign] Manveer
+      objected to: 'Eugene, Oregon'  (summary chars 0-14)
+              why: the source doesn't say oregon, but this is correct
+
+  JUDGES
+    tier1_paid         faithful    span=''
+              reason: All claims (award to Eugene, bypassed bidding, failed 
+                      2019 bid, presentation, Diack's statement about
+                      strategic opportunity and partners) are supported;
+                      "Oregon" is a harmless identifying detail.
+    tier2_hosted_open  faithful    span=''
+              reason: All substantive claims in the summary are supported by 
+                      the source document.
+    tier3_local        faithful    span=''
+              reason: All substantive claims in the summary are supported by 
+                      information present in the source document.
+
+------------------------------------------------------------------------------
+batch_1:11  [Unwanted]  reference=UNFAITHFUL  summarizer=microsoft/Phi-3-mini-4k-instruct
+------------------------------------------------------------------------------
+    SOURCE : `` Hourglass '' is a song by British electronic duo Disclosure . 
+             Hourglass is singer-songwriter James Taylor 's fourteenth studio
+             album . [...]
+    SUMMARY: "Hourglass" is a song by British electronic duo Disclosure. It 
+             is associated with singer-songwriter James Taylor's fourteenth
+             studio album. However, the passage does not directly link the
+             song "Hourglass" to James Taylor's album. The information
+             provided seems to be incorrect or misleading. The song
+             "Hourglass" is indeed by Disclosure, but it is not mentioned in
+             the passage that it is part of James Taylor's album. The correct
+             information should be that "Hourglass" is a song by Disclosure,
+             and it is not directly related to James Taylor's album.
+
+  HUMAN ANNOTATORS
+    [Unwanted] forrest
+      objected to: 'The song "Hourglass" is indeed by Disclosure, but it is not mentioned in the passage that it is part of James Taylor\'s album. The correct information should be that "Hourglass" is a song by Disclosure, and it is not directly related to James Taylor\'s album.'  (summary chars 293-550)
+              why: The summary itself is conflicting. Neither of the two 
+                   conflicting statements are supported by the source because
+                   the source does not say whether the two occurrences of
+                   Hourglass are the same/related song.
+    [Unwanted, Unwanted.Intrinsic] Renyi Qu
+      objected to: "It is associated with singer-songwriter James Taylor's fourteenth studio album. "  (summary chars 61-141)
+              why: The 2 entities are not related.
+    [Unwanted, Unwanted.Extrinsic] Renyi Qu
+      objected to: 'However, the passage does not directly link the song "Hourglass" to James Taylor\'s album. The information provided seems to be incorrect or misleading. The song "Hourglass" is indeed by Disclosure, but it is not mentioned in the passage that it is part of James Taylor\'s album. The correct information should be that "Hourglass" is a song by Disclosure, and it is not directly related to James Taylor\'s album.'  (summary chars 141-550)
+              why: This is hallucination. This LLM couldn't figure out the 
+                   fact that "Hourglass" refers to two independent entities.
+
+  JUDGES
+    tier1_paid         UNFAITHFUL  span="It is associated with singer-songwriter James Taylor's fourt"
+              reason: The source presents two separate facts (a Disclosure 
+                      song and a James Taylor album both named "Hourglass")
+                      and never links the song to Taylor's album, so the
+                      asserted association is unsupported and the summary's
+                      self-contradictory commentary misrepresents the source.
+    tier2_hosted_open  UNFAITHFUL  span="It is associated with singer-songwriter James Taylor's fourt"
+              reason: The source does not state that the Disclosure song 
+                      'Hourglass' is associated with James Taylor's album,
+                      only that 'Hourglass' is also the title of his
+                      fourteenth studio album.
+    tier3_local        UNFAITHFUL  span='The correct information should be that "Hourglass" is a song'
+              reason: The source states that Hourglass is James Taylor’s 
+                      fourteenth studio album, contradicting the summary’s
+                      claim that it is unrelated.
+
+------------------------------------------------------------------------------
+batch_1:15  [Benign]  reference=faithful  summarizer=meta-llama/Meta-Llama-3.1-8B-Instruct
+------------------------------------------------------------------------------
+    SOURCE : `` Hourglass '' is a song by British electronic duo Disclosure . 
+             Hourglass is singer-songwriter James Taylor 's fourteenth studio
+             album . [...]
+    SUMMARY: The passage describes two separate pieces of information: a song 
+             called "Hourglass" by British electronic duo Disclosure, and a
+             studio album also called "Hourglass" by singer-songwriter James
+             Taylor.
+
+  HUMAN ANNOTATORS
+    [Benign] forrest
+      objected to: 'two separate pieces of information'  (summary chars 22-56)
+              why: The source does not support nor refute that the two 
+                   occurrences of Hourglass are about the same song. But the
+                   summary states they are different, which is very likely
+                   from the way that the source was written and is supported
+                   by the world knowledge.
+
+  JUDGES
+    tier1_paid         faithful    span=''
+              reason: The summary accurately restates both facts from the 
+                      source without adding unsupported details.
+    tier2_hosted_open  faithful    span=''
+              reason: The summary accurately reflects the two pieces of 
+                      information in the source without adding unsupported
+                      details.
+    tier3_local        faithful    span=''
+              reason: The summary accurately reflects the information in the 
+                      source document.
+
+------------------------------------------------------------------------------
+batch_1:16  [Benign]  reference=faithful  summarizer=meta-llama/Meta-Llama-3.1-70B-Instruct
+------------------------------------------------------------------------------
+    SOURCE : `` Hourglass '' is a song by British electronic duo Disclosure . 
+             Hourglass is singer-songwriter James Taylor 's fourteenth studio
+             album . [...]
+    SUMMARY: Here is a concise summary of the passage: The passage mentions 
+             two separate entities: a song called "Hourglass" by the British
+             electronic duo Disclosure, and a studio album called "Hourglass"
+             by singer-songwriter James Taylor, which is his fourteenth studio
+             album.
+
+  HUMAN ANNOTATORS
+    [Benign] forrest
+      objected to: 'two separate entities'  (summary chars 64-85)
+              why: The source does not support nor refute that the two 
+                   occurrences of Hourglass are about the same song. But the
+                   summary states they are different, which is very likely
+                   from the way that the source was written and is supported
+                   by the world knowledge.
+
+  JUDGES
+    tier1_paid         faithful    span=''
+              reason: The summary accurately restates both facts from the 
+                      source without adding unsupported details.
+    tier2_hosted_open  faithful    span=''
+              reason: All claims in the summary are directly supported by the 
+                      source document.
+    tier3_local        faithful    span=''
+              reason: The summary accurately reflects the information 
+                      provided in the source document.
+
+------------------------------------------------------------------------------
+batch_1:17  [Unwanted]  reference=UNFAITHFUL  summarizer=google/gemini-1.5-flash-001
+------------------------------------------------------------------------------
+    SOURCE : `` Hourglass '' is a song by British electronic duo Disclosure . 
+             Hourglass is singer-songwriter James Taylor 's fourteenth studio
+             album . [...]
+    SUMMARY: "Hourglass" is a song by British electronic duo Disclosure, and 
+             it is featured on singer-songwriter James Taylor's fourteenth
+             studio album.
+
+  HUMAN ANNOTATORS
+    [Unwanted] forrest
+      objected to: '"Hourglass" is a song by British electronic duo Disclosure, and it is featured on singer-songwriter James Taylor\'s fourteenth studio album. \n'  (summary chars 0-141)
+              why: The summary sounds that the two Hourglass mentioned in the 
+                   source are the same song. But the source does not imply
+                   that.
+    [Unwanted, Unwanted.Intrinsic] Renyi Qu
+      objected to: ", and it is featured on singer-songwriter James Taylor's fourteenth studio album. \n"  (summary chars 58-141)
+              why: They are 2 separate entities.
+
+  JUDGES
+    tier1_paid         UNFAITHFUL  span="it is featured on singer-songwriter James Taylor's fourteent"
+              reason: The source lists two separate works named Hourglass; it 
+                      never says Disclosure's song appears on James Taylor's
+                      album.
+    tier2_hosted_open  UNFAITHFUL  span="and it is featured on singer-songwriter James Taylor's fourt"
+              reason: The source says Hourglass is the album itself, not that 
+                      a Disclosure song appears on it.
+    tier3_local        UNFAITHFUL  span="and it is featured on singer‑songwriter James Taylor's fourt"
+              reason: The source states the album is titled "Hourglass" but 
+                      does not say the Disclosure song appears on it.
+
+------------------------------------------------------------------------------
+batch_1:23  [Consistent]  reference=faithful  summarizer=cohere/command-r-08-2024
+------------------------------------------------------------------------------
+    SOURCE : As of , more than cases of COVID-19 have been reported in more 
+             than 190 countries and 200 territories , resulting in more than
+             deaths . [...]
+    SUMMARY: "The COVID-19 pandemic has affected over 190 countries and 200 
+             territories, with a global case count surpassing an unspecified
+             number and a death toll exceeding an unspecified amount."
+
+  HUMAN ANNOTATORS
+    (none: no annotator marked a span, which is what makes it Consistent)
+
+  JUDGES
+    tier1_paid         faithful    span=''
+              reason: The summary accurately reflects the source's claims 
+                      about 190+ countries, 200+ territories, and explicitly
+                      notes the case and death figures are unspecified.
+    tier2_hosted_open  faithful    span=''
+              reason: All claims in the summary are supported by the source, 
+                      which provides no specific numbers and the summary
+                      reflects that by noting unspecified counts.
+    tier3_local        faithful    span=''
+              reason: The summary accurately reflects the information 
+                      provided in the source without adding unsupported
+                      details.
+
+------------------------------------------------------------------------------
+batch_1:24  [Consistent]  reference=faithful  summarizer=Qwen/Qwen2.5-7B-Instruct
+------------------------------------------------------------------------------
+    SOURCE : As of , more than cases of COVID-19 have been reported in more 
+             than 190 countries and 200 territories , resulting in more than
+             deaths . [...]
+    SUMMARY: As of the given time point, over 190 countries and 200 
+             territories have reported more than a certain number of COVID-19
+             cases, with the total exceeding a specific death count.
+
+  HUMAN ANNOTATORS
+    (none: no annotator marked a span, which is what makes it Consistent)
+
+  JUDGES
+    tier1_paid         faithful    span=''
+              reason: The summary restates the source's claim about cases 
+                      across more than 190 countries and 200 territories and
+                      unspecified death totals without adding unsupported
+                      specifics.
+    tier2_hosted_open  faithful    span=''
+              reason: The summary paraphrases the source's vague statements 
+                      without adding unsupported specifics.
+    tier3_local        faithful    span=''
+              reason: The summary restates the source’s information using 
+                      general terms and does not add any unsupported claims.
+
+------------------------------------------------------------------------------
+batch_1:27  [Consistent]  reference=faithful  summarizer=google/gemini-1.5-flash-001
+------------------------------------------------------------------------------
+    SOURCE : As of , more than cases of COVID-19 have been reported in more 
+             than 190 countries and 200 territories , resulting in more than
+             deaths . [...]
+    SUMMARY: As of the time of this writing, over 190 countries and 200 
+             territories have reported more than cases of COVID-19, resulting
+             in more than deaths.
+
+  HUMAN ANNOTATORS
+    (none: no annotator marked a span, which is what makes it Consistent)
+
+  JUDGES
+    tier1_paid         faithful    span=''
+              reason: The summary restates the source's claims about case 
+                      counts, affected countries and territories, and deaths
+                      without adding or contradicting information.
+    tier2_hosted_open  faithful    span=''
+              reason: The summary only paraphrases the source without adding 
+                      or contradicting any specific details.
+    tier3_local        faithful    span=''
+              reason: The summary accurately reflects the information 
+                      provided in the source document without adding
+                      unsupported details.
+
+------------------------------------------------------------------------------
+batch_1:6  [Consistent]  reference=faithful  summarizer=meta-llama/Meta-Llama-3.1-70B-Instruct
+------------------------------------------------------------------------------
+    SOURCE : Poseidon (film) . Poseidon grossed $ 181,674,817 at the 
+             worldwide box office on a budget of $ 160 million . [...]
+    SUMMARY: Here is a concise summary of the passage: The film "Poseidon" 
+             grossed $181,674,817 worldwide on a budget of $160 million.
+
+  HUMAN ANNOTATORS
+    (none: no annotator marked a span, which is what makes it Consistent)
+
+  JUDGES
+    tier1_paid         faithful    span=''
+              reason: The summary accurately restates the box office gross 
+                      and budget figures from the source.
+    tier2_hosted_open  faithful    span=''
+              reason: All claims in the summary are directly supported by the 
+                      source document.
+    tier3_local        faithful    span=''
+              reason: The summary accurately reflects the source information.
+
+------------------------------------------------------------------------------
+batch_1:7  [Benign]  reference=faithful  summarizer=google/gemini-1.5-flash-001
+------------------------------------------------------------------------------
+    SOURCE : Poseidon (film) . Poseidon grossed $ 181,674,817 at the 
+             worldwide box office on a budget of $ 160 million . [...]
+    SUMMARY: The film "Poseidon" made $181,674,817 worldwide, exceeding its 
+             $160 million budget.
+
+  HUMAN ANNOTATORS
+    [Benign] forrest
+      objected to: 'exceeding'  (summary chars 49-58)
+              why: the source does not compare the budget and the earning.
+    [Benign] Renyi Qu
+      objected to: 'exceeding'  (summary chars 49-58)
+              why: the source does not compare the budget and the earning.
+
+  JUDGES
+    tier1_paid         faithful    span=''
+              reason: Both the worldwide gross figure and the budget match 
+                      the source, and the comparison is a simple arithmetic
+                      observation supported by those numbers.
+    tier2_hosted_open  faithful    span=''
+              reason: All claims in the summary (the gross amount, worldwide 
+                      scope, and budget) are directly supported by the source,
+                      and the inference that the gross exceeds the budget
+                      follows from the provided numbers.
+    tier3_local        faithful    span=''
+              reason: The summary accurately reports the worldwide gross and 
+                      budget figures stated in the source.

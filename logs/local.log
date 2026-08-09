@@ -1,0 +1,101 @@
+[2026-08-08 13:18:28] tier=local split=all repeats=3 attempt=1
+judge      : tier3_local (gpt-oss:20b, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 0
+to request : 2250
+
+     25/2250 (  1.1%)  parse failures: 0
+     50/2250 (  2.2%)  parse failures: 0
+     75/2250 (  3.3%)  parse failures: 0
+    100/2250 (  4.4%)  parse failures: 0
+    125/2250 (  5.6%)  parse failures: 0
+    150/2250 (  6.7%)  parse failures: 0
+    175/2250 (  7.8%)  parse failures: 0
+    200/2250 (  8.9%)  parse failures: 0
+    225/2250 ( 10.0%)  parse failures: 2
+    250/2250 ( 11.1%)  parse failures: 2
+    275/2250 ( 12.2%)  parse failures: 2
+    300/2250 ( 13.3%)  parse failures: 2
+    325/2250 ( 14.4%)  parse failures: 2
+    350/2250 ( 15.6%)  parse failures: 3
+    375/2250 ( 16.7%)  parse failures: 3
+    400/2250 ( 17.8%)  parse failures: 4
+    425/2250 ( 18.9%)  parse failures: 5
+    450/2250 ( 20.0%)  parse failures: 6
+    475/2250 ( 21.1%)  parse failures: 9
+    500/2250 ( 22.2%)  parse failures: 9
+    525/2250 ( 23.3%)  parse failures: 9
+    550/2250 ( 24.4%)  parse failures: 10
+    575/2250 ( 25.6%)  parse failures: 11
+    600/2250 ( 26.7%)  parse failures: 11
+    625/2250 ( 27.8%)  parse failures: 11
+    650/2250 ( 28.9%)  parse failures: 11
+    675/2250 ( 30.0%)  parse failures: 11
+    700/2250 ( 31.1%)  parse failures: 11
+    725/2250 ( 32.2%)  parse failures: 13
+    750/2250 ( 33.3%)  parse failures: 13
+    775/2250 ( 34.4%)  parse failures: 13
+    800/2250 ( 35.6%)  parse failures: 13
+    825/2250 ( 36.7%)  parse failures: 13
+    850/2250 ( 37.8%)  parse failures: 13
+    875/2250 ( 38.9%)  parse failures: 14
+    900/2250 ( 40.0%)  parse failures: 16
+    925/2250 ( 41.1%)  parse failures: 16
+    950/2250 ( 42.2%)  parse failures: 18
+    975/2250 ( 43.3%)  parse failures: 18
+   1000/2250 ( 44.4%)  parse failures: 18
+   1025/2250 ( 45.6%)  parse failures: 18
+   1050/2250 ( 46.7%)  parse failures: 18
+   1075/2250 ( 47.8%)  parse failures: 18
+   1100/2250 ( 48.9%)  parse failures: 18
+   1125/2250 ( 50.0%)  parse failures: 18
+   1150/2250 ( 51.1%)  parse failures: 18
+   1175/2250 ( 52.2%)  parse failures: 19
+   1200/2250 ( 53.3%)  parse failures: 20
+   1225/2250 ( 54.4%)  parse failures: 29
+   1250/2250 ( 55.6%)  parse failures: 29
+   1275/2250 ( 56.7%)  parse failures: 31
+   1300/2250 ( 57.8%)  parse failures: 32
+   1325/2250 ( 58.9%)  parse failures: 32
+   1350/2250 ( 60.0%)  parse failures: 32
+   1375/2250 ( 61.1%)  parse failures: 34
+   1400/2250 ( 62.2%)  parse failures: 35
+   1425/2250 ( 63.3%)  parse failures: 35
+   1450/2250 ( 64.4%)  parse failures: 37
+   1475/2250 ( 65.6%)  parse failures: 38
+   1500/2250 ( 66.7%)  parse failures: 38
+   1525/2250 ( 67.8%)  parse failures: 40
+   1550/2250 ( 68.9%)  parse failures: 40
+   1575/2250 ( 70.0%)  parse failures: 40
+   1600/2250 ( 71.1%)  parse failures: 43
+   1625/2250 ( 72.2%)  parse failures: 43
+   1650/2250 ( 73.3%)  parse failures: 43
+   1675/2250 ( 74.4%)  parse failures: 43
+   1700/2250 ( 75.6%)  parse failures: 43
+   1725/2250 ( 76.7%)  parse failures: 46
+   1750/2250 ( 77.8%)  parse failures: 47
+   1775/2250 ( 78.9%)  parse failures: 47
+   1800/2250 ( 80.0%)  parse failures: 47
+   1825/2250 ( 81.1%)  parse failures: 48
+   1850/2250 ( 82.2%)  parse failures: 49
+   1875/2250 ( 83.3%)  parse failures: 51
+   1900/2250 ( 84.4%)  parse failures: 56
+   1925/2250 ( 85.6%)  parse failures: 56
+   1950/2250 ( 86.7%)  parse failures: 57
+   1975/2250 ( 87.8%)  parse failures: 61
+   2000/2250 ( 88.9%)  parse failures: 61
+   2025/2250 ( 90.0%)  parse failures: 61
+   2050/2250 ( 91.1%)  parse failures: 61
+   2075/2250 ( 92.2%)  parse failures: 62
+   2100/2250 ( 93.3%)  parse failures: 62
+   2125/2250 ( 94.4%)  parse failures: 62
+   2150/2250 ( 95.6%)  parse failures: 63
+   2175/2250 ( 96.7%)  parse failures: 63
+   2200/2250 ( 97.8%)  parse failures: 63
+   2225/2250 ( 98.9%)  parse failures: 63
+   2250/2250 (100.0%)  parse failures: 63
+
+done. 2250 requested, 63 unparseable (2.8%).
+[2026-08-08 23:24:59] tier=local COMPLETE after 1 attempt(s)

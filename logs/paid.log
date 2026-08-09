@@ -1,0 +1,314 @@
+[2026-08-08 13:18:28] tier=paid split=all repeats=3 attempt=1
+judge      : tier1_paid (claude-opus-5, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 0
+to request : 2250
+
+     25/2250 (  1.1%)  parse failures: 0
+
+ABORTED after 40 of 2250: tier1: HTTP 529: {"type":"error","error":{"type":"overloaded_error","message":"Overloaded"},"request_id":"req_011CdqC9NA6NRuhQa7kkFVUt"}
+Nothing is lost. Fix the cause and re-run; the store resumes.
+[2026-08-08 13:21:17] tier=paid exit=1, retry in 120s
+[2026-08-08 13:23:17] tier=paid split=all repeats=3 attempt=2
+judge      : tier1_paid (claude-opus-5, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 40
+to request : 2210
+
+     25/2210 (  1.1%)  parse failures: 0
+
+ABORTED after 46 of 2210: tier1: HTTP 529: {"type":"error","error":{"type":"overloaded_error","message":"Overloaded"},"request_id":"req_011CdqCXdNFhMumndkuXAvHg"}
+Nothing is lost. Fix the cause and re-run; the store resumes.
+[2026-08-08 13:26:20] tier=paid exit=1, retry in 120s
+[2026-08-08 13:28:20] tier=paid split=all repeats=3 attempt=3
+judge      : tier1_paid (claude-opus-5, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 86
+to request : 2164
+
+
+ABORTED after 21 of 2164: tier1: HTTP 529: {"type":"error","error":{"type":"overloaded_error","message":"Overloaded"},"request_id":"req_011CdqCqRPvVUzpqYY9sbWut"}
+Nothing is lost. Fix the cause and re-run; the store resumes.
+[2026-08-08 13:30:20] tier=paid exit=1, retry in 120s
+[2026-08-08 13:32:20] tier=paid split=all repeats=3 attempt=4
+judge      : tier1_paid (claude-opus-5, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 107
+to request : 2143
+
+
+ABORTED after 0 of 2143: tier1: HTTP 529: {"type":"error","error":{"type":"overloaded_error","message":"Overloaded"},"request_id":"req_011CdqCzrMbxcdEwdP8TXxjM"}
+Nothing is lost. Fix the cause and re-run; the store resumes.
+[2026-08-08 13:32:28] tier=paid exit=1, retry in 120s
+[2026-08-08 13:34:28] tier=paid split=all repeats=3 attempt=5
+judge      : tier1_paid (claude-opus-5, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 107
+to request : 2143
+
+     25/2143 (  1.2%)  parse failures: 0
+
+ABORTED after 37 of 2143: tier1: HTTP 529: {"type":"error","error":{"type":"overloaded_error","message":"Overloaded"},"request_id":"req_011CdqDMxL7Jpuuf8iZReTxL"}
+Nothing is lost. Fix the cause and re-run; the store resumes.
+[2026-08-08 13:37:15] tier=paid exit=1, retry in 120s
+[2026-08-08 13:39:15] tier=paid split=all repeats=3 attempt=6
+judge      : tier1_paid (claude-opus-5, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 144
+to request : 2106
+
+
+ABORTED after 0 of 2106: tier1: HTTP 529: {"type":"error","error":{"type":"overloaded_error","message":"Overloaded"},"request_id":"req_011CdqDXQcR7pLwTuNGXi4h5"}
+Nothing is lost. Fix the cause and re-run; the store resumes.
+[2026-08-08 13:39:23] tier=paid exit=1, retry in 120s
+[2026-08-08 13:41:23] tier=paid split=all repeats=3 attempt=7
+judge      : tier1_paid (claude-opus-5, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 144
+to request : 2106
+
+
+ABORTED after 0 of 2106: tier1: HTTP 529: {"type":"error","error":{"type":"overloaded_error","message":"Overloaded"},"request_id":"req_011CdqDgrfKeujy98FRVfvwQ"}
+Nothing is lost. Fix the cause and re-run; the store resumes.
+[2026-08-08 13:41:32] tier=paid exit=1, retry in 120s
+[2026-08-08 13:43:32] tier=paid split=all repeats=3 attempt=8
+judge      : tier1_paid (claude-opus-5, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 144
+to request : 2106
+
+
+ABORTED after 21 of 2106: tier1: HTTP 529: {"type":"error","error":{"type":"overloaded_error","message":"Overloaded"},"request_id":"req_011CdqDyEsFbZf4SghpiipJw"}
+Nothing is lost. Fix the cause and re-run; the store resumes.
+[2026-08-08 13:45:13] tier=paid exit=1, retry in 120s
+[2026-08-08 13:47:13] tier=paid split=all repeats=3 attempt=9
+judge      : tier1_paid (claude-opus-5, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 165
+to request : 2085
+
+
+ABORTED after 11 of 2085: tier1: HTTP 529: {"type":"error","error":{"type":"overloaded_error","message":"Overloaded"},"request_id":"req_011CdqECQFv6X4iUhbf7Avap"}
+Nothing is lost. Fix the cause and re-run; the store resumes.
+[2026-08-08 13:48:12] tier=paid exit=1, retry in 120s
+[2026-08-08 13:50:12] tier=paid split=all repeats=3 attempt=10
+judge      : tier1_paid (claude-opus-5, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 176
+to request : 2074
+
+     25/2074 (  1.2%)  parse failures: 0
+     50/2074 (  2.4%)  parse failures: 0
+     75/2074 (  3.6%)  parse failures: 1
+    100/2074 (  4.8%)  parse failures: 2
+    125/2074 (  6.0%)  parse failures: 2
+    150/2074 (  7.2%)  parse failures: 2
+    175/2074 (  8.4%)  parse failures: 2
+    200/2074 (  9.6%)  parse failures: 2
+    225/2074 ( 10.8%)  parse failures: 2
+    250/2074 ( 12.1%)  parse failures: 2
+    275/2074 ( 13.3%)  parse failures: 2
+    300/2074 ( 14.5%)  parse failures: 2
+    325/2074 ( 15.7%)  parse failures: 2
+    350/2074 ( 16.9%)  parse failures: 2
+    375/2074 ( 18.1%)  parse failures: 2
+    400/2074 ( 19.3%)  parse failures: 3
+    425/2074 ( 20.5%)  parse failures: 3
+    450/2074 ( 21.7%)  parse failures: 3
+    475/2074 ( 22.9%)  parse failures: 3
+    500/2074 ( 24.1%)  parse failures: 3
+    525/2074 ( 25.3%)  parse failures: 3
+    550/2074 ( 26.5%)  parse failures: 4
+    575/2074 ( 27.7%)  parse failures: 4
+    600/2074 ( 28.9%)  parse failures: 5
+    625/2074 ( 30.1%)  parse failures: 6
+    650/2074 ( 31.3%)  parse failures: 7
+    675/2074 ( 32.5%)  parse failures: 7
+    700/2074 ( 33.8%)  parse failures: 7
+    725/2074 ( 35.0%)  parse failures: 7
+    750/2074 ( 36.2%)  parse failures: 8
+    775/2074 ( 37.4%)  parse failures: 8
+    800/2074 ( 38.6%)  parse failures: 8
+    825/2074 ( 39.8%)  parse failures: 8
+    850/2074 ( 41.0%)  parse failures: 9
+    875/2074 ( 42.2%)  parse failures: 9
+    900/2074 ( 43.4%)  parse failures: 9
+    925/2074 ( 44.6%)  parse failures: 9
+    950/2074 ( 45.8%)  parse failures: 9
+    975/2074 ( 47.0%)  parse failures: 9
+   1000/2074 ( 48.2%)  parse failures: 9
+   1025/2074 ( 49.4%)  parse failures: 9
+   1050/2074 ( 50.6%)  parse failures: 10
+   1075/2074 ( 51.8%)  parse failures: 10
+   1100/2074 ( 53.0%)  parse failures: 10
+   1125/2074 ( 54.2%)  parse failures: 10
+   1150/2074 ( 55.4%)  parse failures: 10
+
+ABORTED after 1163 of 2074: tier1 transport: The read operation timed out
+Nothing is lost. Fix the cause and re-run; the store resumes.
+[2026-08-08 15:34:34] tier=paid exit=1, retry in 120s
+[2026-08-08 15:36:34] tier=paid GAVE UP after 10 attempts
+[2026-08-08 21:43:21] tier=paid split=all repeats=3 attempt=1
+judge      : tier1_paid (claude-opus-5, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 1339
+to request : 911
+
+     25/911 (  2.7%)  parse failures: 0
+     50/911 (  5.5%)  parse failures: 0
+     75/911 (  8.2%)  parse failures: 0
+    100/911 ( 11.0%)  parse failures: 0
+    125/911 ( 13.7%)  parse failures: 0
+    150/911 ( 16.5%)  parse failures: 0
+    175/911 ( 19.2%)  parse failures: 0
+    200/911 ( 22.0%)  parse failures: 0
+    225/911 ( 24.7%)  parse failures: 0
+    250/911 ( 27.4%)  parse failures: 0
+    275/911 ( 30.2%)  parse failures: 0
+    300/911 ( 32.9%)  parse failures: 0
+    325/911 ( 35.7%)  parse failures: 1
+    350/911 ( 38.4%)  parse failures: 1
+    375/911 ( 41.2%)  parse failures: 1
+    400/911 ( 43.9%)  parse failures: 2
+    425/911 ( 46.7%)  parse failures: 2
+    450/911 ( 49.4%)  parse failures: 2
+    475/911 ( 52.1%)  parse failures: 2
+    500/911 ( 54.9%)  parse failures: 2
+    525/911 ( 57.6%)  parse failures: 2
+    550/911 ( 60.4%)  parse failures: 2
+    575/911 ( 63.1%)  parse failures: 2
+    600/911 ( 65.9%)  parse failures: 2
+    625/911 ( 68.6%)  parse failures: 2
+    650/911 ( 71.4%)  parse failures: 2
+
+ABORTED after 660 of 911: tier1: HTTP 400: {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011Cdqup22jgRGHdZ2GCrutW"}
+Nothing is lost. Fix the cause and re-run; the store resumes.
+[2026-08-08 22:27:34] tier=paid exit=1, retry in 120s
+[2026-08-08 22:29:34] tier=paid split=all repeats=3 attempt=2
+judge      : tier1_paid (claude-opus-5, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 1999
+to request : 251
+
+
+ABORTED after 0 of 251: tier1: HTTP 400: {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CdquxvdoEVT9p6wKjkist"}
+Nothing is lost. Fix the cause and re-run; the store resumes.
+[2026-08-08 22:29:34] tier=paid exit=1, retry in 120s
+[2026-08-08 22:31:34] tier=paid split=all repeats=3 attempt=3
+judge      : tier1_paid (claude-opus-5, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 1999
+to request : 251
+
+
+ABORTED after 0 of 251: tier1: HTTP 400: {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011Cdqv7oWvRFRFKyQGMiqGF"}
+Nothing is lost. Fix the cause and re-run; the store resumes.
+[2026-08-08 22:31:35] tier=paid exit=1, retry in 120s
+[2026-08-08 22:33:35] tier=paid split=all repeats=3 attempt=4
+judge      : tier1_paid (claude-opus-5, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 1999
+to request : 251
+
+
+ABORTED after 0 of 251: tier1: HTTP 400: {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CdqvGgaCxpkDeUVbiwj37"}
+Nothing is lost. Fix the cause and re-run; the store resumes.
+[2026-08-08 22:33:35] tier=paid exit=1, retry in 120s
+[2026-08-08 22:35:35] tier=paid split=all repeats=3 attempt=5
+judge      : tier1_paid (claude-opus-5, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 1999
+to request : 251
+
+
+ABORTED after 0 of 251: tier1: HTTP 400: {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CdqvRZc1bSvJjkWgBN6R4"}
+Nothing is lost. Fix the cause and re-run; the store resumes.
+[2026-08-08 22:35:36] tier=paid exit=1, retry in 600s
+[2026-08-08 22:45:36] tier=paid split=all repeats=3 attempt=6
+judge      : tier1_paid (claude-opus-5, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 1999
+to request : 251
+
+
+ABORTED after 0 of 251: tier1: HTTP 400: {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CdqwBq2BbxmrUiw1DZg6T"}
+Nothing is lost. Fix the cause and re-run; the store resumes.
+[2026-08-08 22:45:36] tier=paid exit=1, retry in 600s
+[2026-08-08 22:55:36] tier=paid split=all repeats=3 attempt=7
+judge      : tier1_paid (claude-opus-5, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 1999
+to request : 251
+
+
+ABORTED after 0 of 251: tier1: HTTP 400: {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011Cdqwx6fkJ5zSv9UXw93Rr"}
+Nothing is lost. Fix the cause and re-run; the store resumes.
+[2026-08-08 22:55:37] tier=paid exit=1, retry in 600s
+[2026-08-08 23:05:37] tier=paid split=all repeats=3 attempt=8
+judge      : tier1_paid (claude-opus-5, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 1999
+to request : 251
+
+
+ABORTED after 0 of 251: tier1: HTTP 400: {"type":"error","error":{"type":"invalid_request_error","message":"Your credit balance is too low to access the Anthropic API. Please go to Plans & Billing to upgrade or purchase credits."},"request_id":"req_011CdqxiMyENWhSw6NS9KWqv"}
+Nothing is lost. Fix the cause and re-run; the store resumes.
+[2026-08-08 23:05:37] tier=paid exit=1, retry in 600s
+[2026-08-08 23:15:37] tier=paid split=all repeats=3 attempt=9
+judge      : tier1_paid (claude-opus-5, temp=0.0)
+prompt     : v0.2 / 3b14635aa1c3eecd
+split      : all, 750 items x 3 repeats
+labels     : Consistent 175, Benign 64, Questionable 72, Unwanted 439
+cached     : 1999
+to request : 251
+
+     25/251 ( 10.0%)  parse failures: 0
+     50/251 ( 19.9%)  parse failures: 0
+     75/251 ( 29.9%)  parse failures: 0
+    100/251 ( 39.8%)  parse failures: 0
+    125/251 ( 49.8%)  parse failures: 0
+    150/251 ( 59.8%)  parse failures: 0
+    175/251 ( 69.7%)  parse failures: 0
+    200/251 ( 79.7%)  parse failures: 0
+    225/251 ( 89.6%)  parse failures: 0
+    250/251 ( 99.6%)  parse failures: 0
+    251/251 (100.0%)  parse failures: 0
+
+done. 251 requested, 0 unparseable (0.0%).
+[2026-08-08 23:31:51] tier=paid COMPLETE after 9 attempt(s)

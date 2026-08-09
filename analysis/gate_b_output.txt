@@ -1,0 +1,155 @@
+====================================================================
+GATE B: FaithBench usability check
+====================================================================
+
+[Q1] ITEM COUNT
+     750 samples across 15 batches
+     per batch: {'batch_1': 50, 'batch_2': 50, 'batch_3': 50, 'batch_4': 50, 'batch_5': 50, 'batch_6': 50, 'batch_7': 50, 'batch_8': 50, 'batch_9': 50, 'batch_10': 50, 'batch_11': 50, 'batch_12': 50, 'batch_14': 50, 'batch_15': 50, 'batch_16': 50}
+     batch sizes seen: [50]
+     duplicate uids: 0  (sample_id alone is NOT unique across batches)
+
+[Q2] ANNOTATORS PER ITEM
+     samples WITH annotations:      575 ( 76.7%)
+     samples WITHOUT annotations:   175 ( 23.3%)  <- 'Consistent'
+     distinct annotators per annotated sample:
+       1 annotator(s):   132 samples  ( 23.0% of annotated)
+       2 annotator(s):   262 samples  ( 45.6% of annotated)
+       3 annotator(s):   174 samples  ( 30.3% of annotated)
+       4 annotator(s):     7 samples  (  1.2% of annotated)
+     >= 2 annotators: 443 of 575 annotated ( 77.0%)
+                      443 of 750 overall      ( 59.1%)
+     distinct annotators in corpus: 42
+     annotations per annotator:
+       Erana          136
+       Miaoran        134
+       Manveer         98
+       Matt            93
+       forrest         92
+       Erana           86
+       Manveer         83
+       Yujia Tang      80
+       Manveer         74
+       forrest         69
+       Renyi Qu        68
+       Chenyu Xu       67
+       Yujia Tang      67
+       Manveer         63
+       Renyi Qu        61
+       Miaoran         60
+       Chenyu Xu       57
+       Miaoran         54
+       Matt            52
+       Vivek           50
+       Amin Ahmad      49
+       Renyi Qu        47
+       Miaoran         46
+       Suleman         43
+       Amin Ahmad      42
+       Amin Ahmad      40
+       Weisi           39
+       Weisi           39
+       forrest         35
+       Chenyu Xu       35
+       Renyi Qu        34
+       Vivek           33
+       Matt            33
+       Rogger          29
+       Suleman         28
+       Yujia Tang      23
+       Rogger          20
+       New User        14
+       Weisi           11
+       Yujia Tang       2
+       New User         2
+       New User         1
+
+[Q3] LABEL DISTRIBUTION
+     (a) summary level, most-severe rule, all samples
+       Consistent       175   23.3%
+       Benign            64    8.5%
+       Questionable      72    9.6%
+       Unwanted         439   58.5%
+
+     (b) annotation level, raw label strings
+       Unwanted                  1098   50.2%
+       Unwanted.Intrinsic         732   33.4%
+       Benign                     676   30.9%
+       Questionable               450   20.6%
+       Unwanted.Extrinsic         306   14.0%
+       TOTAL annotations         2189
+
+     (c) minority class size, the number recall is computed on
+       samples whose most-severe label is Unwanted: 439  ( 58.5%)
+       samples with any annotation at all:          575  ( 76.7%)
+
+     (d) constant-judge baselines, the number to beat
+       strict  (PASS = Consistent)
+         PASS  175 ( 23.3%)   FAIL  575 ( 76.7%)
+         a constant always-FAIL judge scores  76.7% raw agreement and catches nothing
+       lenient (PASS = Consistent + Benign)
+         PASS  239 ( 31.9%)   FAIL  511 ( 68.1%)
+         a constant always-FAIL judge scores  68.1% raw agreement and catches nothing
+
+[Q2b] HUMAN CEILING, summary level, most-severe rule per annotator
+     samples with >= 2 annotators: 443  ( 59.1% of corpus)
+     unanimous across annotators:  278  ( 62.8% of those)
+     pairwise raw agreement:        68.0%  (560/824 pairs)
+     dropped, span marked but no category assigned: 1 (annotator, sample) pairs
+     NOTE: computable only where >= 2 annotators left spans, so every
+           Consistent sample is excluded. This is the ceiling on the hard
+           subset only, not the ceiling for the full corpus.
+
+     MATCHED to the same 443 items, 4-way label space:
+       humans, pairwise           68.0%
+       constant 'Unwanted' judge   84.7%  (375/443)
+       gap                       +16.7 points
+     Use this pairing when comparing the two, not the corpus-wide figure,
+     which is computed over all 750 and is a different denominator.
+
+     MATCHED, binary, canonical rule, same 443 items:
+       humans, pairwise           82.0%
+       constant judge             93.5%  (414/443)
+       gap                       +11.4 points
+
+     MATCHED, binary, strict rule, same 443 items:
+       humans, pairwise          100.0%
+       constant judge            100.0%  (443/443)
+       gap                       +0.0 points
+
+[Q4] REFERENCE-LABEL ROBUSTNESS: most-severe vs majority vote
+       label           most-severe   majority   delta
+       Consistent              175        175      +0
+       Benign                   64         88     +24
+       Questionable             72         78      +6
+       Unwanted                439        409     -30
+       -> most-severe  binary FAIL = 575/750 =  76.7%
+       -> majority     binary FAIL = 575/750 =  76.7%
+     Both rules give the same binary split, because they only move items
+     between Benign/Questionable/Unwanted, all of which are FAIL under the
+     strict rule. The aggregation choice is therefore not load-bearing.
+     Majority vote is UNDEFINED on 77 items (exactly 2 annotators, split 1-1).
+     Defined on the 180 items with 3+ annotators. Hence most-severe as primary.
+
+[Q5] LABEL-CONFIDENCE STRATA, for stratified reporting in chapter 4
+       no annotator (Consistent)     175   23.3%
+       single annotator              132   17.6%
+       2+ unanimous                  278   37.1%
+       2+ disagreed                  165   22.0%
+
+     What the 165 disagreements are actually about:
+       Questionable vs Unwanted                     67
+       Benign vs Unwanted                           66
+       Benign vs Questionable                       25
+       Benign vs Questionable vs Unwanted            7
+     Every disagreement is about SEVERITY, never about whether to flag at
+     all, because 'Consistent' is the absence of an annotation and so can
+     never be one annotator's dissenting vote.
+     Under the LENIENT rule (PASS = Consistent or Benign), 98 items have
+     annotators on both sides of the pass/fail line. Under STRICT, zero do.
+
+====================================================================
+VERDICT
+====================================================================
+  [PASS] corpus large enough (no sampling) 750 items, all used
+  [PASS] annotator redundancy present     443 samples have >= 2 annotators
+  [PASS] minority class measurable        439 Unwanted samples
