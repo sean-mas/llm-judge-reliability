@@ -19,7 +19,7 @@
 
 <rect class="box" x="190" y="40" width="300" height="54" rx="4"/>
 <text class="th" x="340" y="66" text-anchor="middle">FaithBench</text>
-<text class="ts" x="340" y="84" text-anchor="middle">750 items, 14 annotators</text>
+<text class="ts" x="340" y="84" text-anchor="middle">750 items, span-level annotation</text>
 
 <path class="arr" d="M340 94 L340 114 L170 114 L170 134"/>
 <path class="arr" d="M340 94 L340 114 L510 114 L510 134"/>
@@ -39,7 +39,7 @@
 <rect class="ref" x="40" y="244" width="260" height="70" rx="4"/>
 <text class="th" x="170" y="268" text-anchor="middle">reference labels</text>
 <text class="ts" x="170" y="286" text-anchor="middle">239 pass, 511 fail</text>
-<text class="ts" x="170" y="303" text-anchor="middle">dev 250, test 500</text>
+<text class="ts" x="170" y="303" text-anchor="middle">dev 262, test 488</text>
 
 <path class="arr" d="M510 204 L510 214 L360 214 L360 267 L380 267"/>
 <path class="arr" d="M360 214 L360 325 L380 325"/>
@@ -50,8 +50,8 @@
 <text class="ts" x="500" y="281" text-anchor="middle">frontier commercial model</text>
 
 <rect class="jdg" x="380" y="302" width="240" height="46" rx="4"/>
-<text class="th" x="500" y="322" text-anchor="middle">tier 2, free tier</text>
-<text class="ts" x="500" y="339" text-anchor="middle">hosted, no cost</text>
+<text class="th" x="500" y="322" text-anchor="middle">tier 2, hosted</text>
+<text class="ts" x="500" y="339" text-anchor="middle">open weights, hosted</text>
 
 <rect class="jdg" x="380" y="360" width="240" height="46" rx="4"/>
 <text class="th" x="500" y="380" text-anchor="middle">tier 3, local</text>
