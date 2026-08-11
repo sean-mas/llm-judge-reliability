@@ -57,13 +57,46 @@ and 461. Under adaptive reasoning it chose to reason less on this task while
 reaching statistically indistinguishable agreement. The open-weight tiers emit
 roughly 3.5 times more output for the same verdict.
 
-🔴 **TODO before submission: reconcile the token counts above with the 22.21 USD
-figure taken from the provider console.** At list prices the store's token totals
-imply roughly 23.50 USD, so the two disagree by about a euro. Do not quote both
-without an explanation. The likely cause is prompt caching on repeated system
-prompts, which is billed below the input rate and which the store does not record
-separately. Either establish that and say so, or quote the console figure alone
-and describe the token counts as uncached equivalents.
+## Cost reconciliation
+
+✅ **Investigated 10.08.2026. The arithmetic is settled, the residual is named, and
+the earlier hypothesis is disproven.**
+
+| | |
+|---|---|
+| Store, tier 1, all 2,250 rows | 2,658,369 input, 408,672 output |
+| List price, `claude-opus-5` | 5.00 USD / 1M input, 25.00 USD / 1M output |
+| Input at list | 13.29 USD |
+| Output at list | 10.22 USD |
+| **Implied total at list** | **23.51 USD** |
+| **Provider console, read after the run** | **22.21 USD** |
+| Residual | 1.30 USD, **5.5%**, unexplained |
+
+**Prompt caching is ruled out and should not be offered as the explanation.** The
+earlier draft of this appendix guessed at caching on the repeated rubric prompt.
+That is wrong: no adapter in `src/` sets `cache_control`, so the harness never
+requests caching and the provider never applies it. A guess that survives into a
+submitted paper as an explanation is worse than an acknowledged gap.
+
+**Two facts make the direction of the residual genuinely odd, and both should be
+stated rather than smoothed.** All 2,250 tier 1 rows carry `created_at` on
+2026-08-08 with a single `model_version`, so the store is not mixing runs or
+model versions. And the separate probe databases (`opus_probe.sqlite`,
+`smoke.sqlite`, `thinking_probe.sqlite`, `gate_c.sqlite`) recorded further paid
+calls that are **not** in `main.sqlite`, which should push the console figure
+*above* the store's implied total rather than below it.
+
+**What to quote in the paper.** Quote **22.21 USD** as the cost, because that is
+what was actually billed and money is a fact about the invoice rather than about
+arithmetic. Report the token totals as the store's record, and footnote that
+list-price arithmetic over those tokens gives 23.51 USD, a 5.5% difference that is
+not explained by caching. **Do not quote both figures without that footnote.**
+
+🟡 **One action worth taking before submission, and it may close this entirely.**
+Re-read the provider console now that the run has been complete for two days.
+Usage reporting commonly lags and is bucketed by UTC day, and the original reading
+was taken close to the end of the run. If the console now reads near 23.50 USD,
+the residual was a reporting lag and the paper can quote a single number.
 
 ## Hardware for the local tier
 
