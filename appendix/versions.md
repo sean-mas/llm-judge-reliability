@@ -71,9 +71,18 @@ backoff topped out at twenty minutes. Fixed by making the launcher's backoff
 progressive: 120 s four times, then 600 s six times, then 1800 s fourteen times,
 about nine hours in total.
 
-🔴 **TODO: paste the verbatim quota error text here.** Chapter 4 cites it as a
-measured operational property of the hosted tier and the exact wording belongs in
-the appendix rather than a paraphrase.
+**The verbatim error, from `logs/hosted.log`.** The account handle is replaced with
+`<account>`; nothing else is altered.
+
+```
+ABORTED after 1774 of 2250: tier2_hosted_open: rate limited or quota exhausted (429).
+{"error":"you (<account>) have reached your session usage limit, upgrade for higher
+limits: https://ollama.com/upgrade (ref: 26ea75c6-e6c9-4fde-812d-cb8480f12a8d)"}
+```
+
+The run aborted loudly at judgment 1,774 of 2,250 rather than recording silence, and
+the cache meant the resumed run repeated none of the completed work. Ten further
+attempts returned the same error before the session window reset.
 
 **The lesson worth one sentence in chapter 3 is not either bug.** It is that both
 runs failed silently: the wrapper exited 0, the logs stopped, and nothing

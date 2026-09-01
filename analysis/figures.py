@@ -232,20 +232,22 @@ def fig_tpr_tnr(primary: dict, split: str) -> str:
 
 
 def fig_gate(primary: dict, prev: float, split: str) -> str:
-    """The release-gate divergence band, which is the research question in one line.
+    """The batch-level release-gate simulation, which answers SQ4 in one line.
 
-    A gate blocks when the flagged share exceeds a threshold T. Truth blocks
-    whenever T is below the real unfaithful rate. Between the highest flag rate
-    any judge produces and that real rate, every judge ships a release that should
-    have been blocked, and no choice of T escapes it.
+    The policy blocks a release when the flagged share of a batch exceeds a
+    threshold T. The same rule applied to the reference labels blocks whenever T
+    falls below the share the reference labels mark unfaithful. Between the
+    highest observed flag rate and that reference rate the two policies give
+    opposite recommendations, and moving T inside the interval does not align
+    them.
     """
     W, H = 860, 420
     x0, bw, axis = 90, 700, 226
     worst = max(primary[j]["flag"] for j in ARMS)
     parts = [
-        text(40, 44, "No threshold makes these judges into a gate", 20, INK, weight="600"),
-        text(40, 68, f"{split} split, scheme U+Q. The gate blocks the release when the flagged "
-                     f"share exceeds the threshold T.", 13, MUTED),
+        text(40, 44, "Batch-level release-gate simulation", 20, INK, weight="600"),
+        text(40, 68, f"{split} split, scheme U+Q. The release is blocked when the flagged share "
+                     f"of the batch exceeds the threshold T.", 13, MUTED),
     ]
 
     def px(v: float) -> float:
@@ -256,9 +258,10 @@ def fig_gate(primary: dict, prev: float, split: str) -> str:
         parts.append(f'<rect x="{px(worst):.1f}" y="{axis - 100}" '
                      f'width="{bw * (prev - worst):.1f}" height="72" fill="#f2dede"/>')
         parts.append(text((px(worst) + px(prev)) / 2, axis - 74,
-                          "every judge ships", 13, WARN, anchor="middle", weight="600"))
+                          "judge-based policy ships", 13, WARN, anchor="middle", weight="600"))
         parts.append(text((px(worst) + px(prev)) / 2, axis - 56,
-                          "the truth blocks", 13, WARN, anchor="middle", weight="600"))
+                          "reference-based policy blocks", 13, WARN, anchor="middle",
+                          weight="600"))
 
     # Ticks sit ABOVE the rule so the space below belongs entirely to the judge
     # markers. Otherwise a tick label and a judge stem land on the same pixels,
@@ -269,12 +272,12 @@ def fig_gate(primary: dict, prev: float, split: str) -> str:
         parts.append(f'<line x1="{px(t):.1f}" y1="{axis - 6}" x2="{px(t):.1f}" y2="{axis}" '
                      f'stroke="{INK}"/>')
         parts.append(text(px(t), axis - 12, f"{t * 100:.0f}%", 11, MUTED, anchor="middle"))
-    parts.append(text(x0 + bw / 2, axis + 132, "gate threshold T", 12, MUTED, anchor="middle"))
+    parts.append(text(x0 + bw / 2, axis + 118, "gate threshold T", 12, MUTED, anchor="middle"))
 
     parts.append(f'<line x1="{px(prev):.1f}" y1="{axis - 118}" x2="{px(prev):.1f}" '
                  f'y2="{axis}" stroke="{WARN}" stroke-width="2.5"/>')
-    parts.append(text(px(prev), axis - 128, f"true unfaithful rate  {prev * 100:.1f}%", 13, WARN,
-                      anchor="middle", weight="600"))
+    parts.append(text(px(prev), axis - 128, f"reference failure rate  {prev * 100:.1f}%", 13,
+                      WARN, anchor="middle", weight="600"))
 
     # Stems first, then labels, each on its own white backing. Three vertical
     # stems and three horizontal labels in one strip collide otherwise.
@@ -293,10 +296,13 @@ def fig_gate(primary: dict, prev: float, split: str) -> str:
         parts.append(f'<circle cx="{px(f):.1f}" cy="{y - 4}" r="4.5" fill="{FILL[j]}"/>')
         parts.append(text(px(f) + 12, y, s, 12, INK))
 
+    parts.append(text(40, H - 46,
+                      f"For any T between {worst * 100:.1f}% and {prev * 100:.1f}%, an interval "
+                      f"{(prev - worst) * 100:.1f} points wide, all three judge-based policies",
+                      13, INK))
     parts.append(text(40, H - 26,
-                      f"For any T between {worst * 100:.1f}% and {prev * 100:.1f}%, a band "
-                      f"{(prev - worst) * 100:.1f} points wide, all three judges pass a release "
-                      f"that should have been blocked.", 13, INK))
+                      "recommend shipping while the reference-based policy recommends blocking.",
+                      13, INK))
     return svg(W, H, "".join(parts))
 
 

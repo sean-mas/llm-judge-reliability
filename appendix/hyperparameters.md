@@ -100,9 +100,29 @@ the residual was a reporting lag and the paper can quote a single number.
 
 ## Hardware for the local tier
 
-🔴 **TODO: record the machine.** Chip, memory, and Ollama version. The 15.2 s
-median above is meaningless without it, and it is the number a practitioner
-would use to decide whether tier 3 is viable for them.
+**The local tier's execution environment.** Read from the machine on 12.08.2026,
+after the run of 08.08.2026 rather than during it, so an intervening update to the
+operating system or to Ollama would not be visible here. The model digest, the
+sampling parameters and the single-request execution come from the run log and the
+harness source and are contemporaneous with the run.
+
+| Property | Value |
+|---|---|
+| Machine | MacBook Pro, Apple M5 |
+| Cores | 10, being 4 performance and 6 efficiency |
+| Unified memory | 24 GB |
+| Operating system | macOS 26.5.2, build 25F84 |
+| Runtime | Ollama 0.32.5 |
+| Model tag | `gpt-oss:20b`, digest `17052f91a42e` |
+| Parameters | 20.9 billion |
+| Quantisation | MXFP4 |
+| Context length | 131,072 tokens, runtime default, not overridden |
+| Sampling | `temperature` 0.0, `num_predict` 1000 |
+| Concurrency | one request at a time, no batching |
+
+No other substantial workload was running during the local tier's execution. That is
+an author statement rather than a measurement, since the harness does not record
+system load.
 
 ## Corpus and split
 
