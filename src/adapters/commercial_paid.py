@@ -5,7 +5,7 @@ three tiers are structurally identical and the appendix can show one request
 shape per tier without SDK indirection in the way.
 
 Key: ANTHROPIC_API_KEY. This is a Console key and is billed separately from any
-Claude Pro subscription; see notes/2026-07-27-api-access.md.
+Claude Pro subscription, which does not carry API credit.
 
 Costs roughly 11 EUR for the 2,250 billable judgments in this study.
 """

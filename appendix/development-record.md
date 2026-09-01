@@ -21,7 +21,7 @@ Source: `analysis/stats-dev-2026-08-09.txt` and
 
 The auxiliary judge `tier2_free` (`gemini-3.5-flash-lite`) appears here marked with
 an asterisk. It ran on dev only and is **never pooled with the three arms**, for
-the reason recorded in `drafts/outline.md`: its `judge_id` shares a string prefix
+for a recorded reason: its `judge_id` shares a string prefix
 with tier 2, so any analysis grouping by prefix would silently merge them.
 
 ---
