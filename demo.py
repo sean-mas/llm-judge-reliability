@@ -3,14 +3,21 @@
     python3 demo.py                 the demo, pausing between acts
     python3 demo.py --no-pause      same, unattended, for timing a rehearsal
     python3 demo.py --case UID      run a specific summary instead of the default
+    python3 demo.py --gate          add a fifth act: rebuild every published number
 
-Six acts, one screen each, Enter between them. Everything runs for real: the
-judge is the study's own tier 3, gpt-oss:20b, on this machine, with no API key
-and no network.
+Four acts, one screen each, Enter between them. The frozen prompt, one real
+summary, the judge's verdict, and then the part that matters: what the experts
+flagged and why, next to what the judge said and why.
 
-Nothing here writes to a database. The judgment in act 3 is made by calling the
-adapter directly rather than through runner.py, so `data/main.sqlite` cannot be
-touched and the numbers act 6 reproduces cannot be disturbed by the demo itself.
+`--gate` adds a fifth act that re-derives every number the paper publishes from
+the stored judgments. It is worth including: the assignment asks the demo to run
+four to six minutes, and the four acts alone are closer to three.
+
+Everything runs for real. The judge is the study's own tier 3, gpt-oss:20b, on
+this machine, with no API key and no network.
+
+Nothing here writes to a database. The judgment is made by calling the adapter
+directly rather than through runner.py, so `data/main.sqlite` cannot be touched.
 
 Terminal for recording: 100 columns, 30 rows, monospace at 20pt or larger.
 """
@@ -19,7 +26,6 @@ from __future__ import annotations
 
 import argparse
 import itertools
-import sqlite3
 import subprocess
 import sys
 import threading
@@ -34,7 +40,6 @@ from loader import load_samples                    # noqa: E402
 from runner import RELEASE, split_corpus           # noqa: E402
 
 ROOT = Path(__file__).resolve().parent
-DB = ROOT / "data" / "main.sqlite"
 
 W = 96                       # content width; fits a 100-column window
 
@@ -140,9 +145,8 @@ def act0() -> None:
     print(wrap("A live run of the study's own harness. The judge is tier 3, "
                "gpt-oss:20b, running on this laptop: no API key, no cost, no network."))
     print()
-    print(wrap("Six steps: the frozen prompt, one real summary, the judge's verdict, "
-               "the human label, the freeze, and every published number rebuilt from "
-               "the stored judgments."))
+    print(wrap("Four steps: the frozen prompt, one real summary, the judge's verdict, "
+               "and then what the experts flagged and why."))
     beat()
 
 
@@ -236,60 +240,49 @@ def act3(sample):
 
 
 def act4(sample, parsed) -> None:
-    act(4, "What the experts said about the same summary")
-    human_label = sample.summary_label()
+    act(4, "Why they disagreed")
+
     human_unfaithful = not sample.is_faithful()
     jcol = BRICK if parsed["unfaithful"] else TEAL
     hcol = BRICK if human_unfaithful else TEAL
-    print(f"  the judge said   {jcol}{BOLD}{parsed['verdict']}{OFF}")
-    print(f"  the experts said {hcol}{BOLD}{'UNFAITHFUL' if human_unfaithful else 'FAITHFUL'}{OFF}"
-          f"   {DIM}most severe span label: {human_label}{OFF}")
+
+    print(f"{DIM}  THE JUDGE{OFF}")
+    print(f"  {jcol}{BOLD}{parsed['verdict']}{OFF}")
+    if parsed["reason"]:
+        print(wrap(clip(parsed["reason"], 300), indent="  "))
     print()
     print(f"{DIM}  {'─' * W}{OFF}")
-    agree = parsed["unfaithful"] == human_unfaithful
-    if agree:
-        print(f"  {TEAL}{BOLD}They agree on this one.{OFF}")
-        print()
-        print(wrap("One case proves nothing either way. Across all 488 summaries in the "
-                   "held-out half, these judges catch between 25 and 35 percent of what "
-                   "the experts marked unfaithful."))
-    else:
-        print(f"  {BRICK}{BOLD}They disagree.{OFF}")
-        print()
-        print(wrap("This is the failure the paper measures. Across all 488 summaries in "
-                   "the held-out half, these judges catch between 25 and 35 percent of "
-                   "what the experts marked unfaithful."))
+    print()
+    print(f"{DIM}  THE EXPERTS{OFF}")
+    print(f"  {hcol}{BOLD}{'UNFAITHFUL' if human_unfaithful else 'FAITHFUL'}{OFF}"
+          f"   {DIM}worst label on any span: {sample.summary_label()}{OFF}")
+    print()
+
+    # Group by the span they objected to, so two people flagging the same phrase
+    # reads as agreement rather than as two separate complaints.
+    seen = {}
+    for a in sample.annotations:
+        span = (a.summary_span or "").strip()
+        if not span:
+            continue
+        key = (span.lower(), next(iter(a.coarse_labels), "?"))
+        rec = seen.setdefault(key, {"span": span, "label": key[1], "notes": [], "n": 0})
+        rec["n"] += 1
+        if a.note.strip():
+            rec["notes"].append(a.note.strip())
+
+    rows = sorted(seen.values(), key=lambda r: r["label"] != "Unwanted")
+    for r in rows:
+        col = BRICK if r["label"] == "Unwanted" else DIM
+        span = clip('"' + r["span"] + '"', 30)
+        note = clip(r["notes"][0], 42) if r["notes"] else ""
+        who = f"  {DIM}({r['n']} annotators){OFF}" if r["n"] > 1 else ""
+        print(f"  {span:<32}{col}{r['label']:<11}{OFF}{note}{who}")
     beat()
 
 
-def act5() -> None:
-    act(5, "Nothing drifted while the study ran", "data/main.sqlite")
-    q = "SELECT DISTINCT prompt_version, prompt_hash FROM judgments;"
-    print(f"{DIM}  {q}{OFF}")
-    print()
-    con = sqlite3.connect(f"file:{DB}?mode=ro", uri=True)
-    try:
-        rows = con.execute(q).fetchall()
-        total = con.execute(
-            "SELECT COUNT(*) FROM judgments WHERE judge_id IN "
-            "('tier1_paid','tier2_hosted_open','tier3_local');").fetchone()[0]
-    finally:
-        con.close()
-    for v, h in rows:
-        print(f"  {BOLD}{v}   {h}{OFF}")
-    print()
-    print(f"{DIM}  {'─' * W}{OFF}")
-    print(f"  {BOLD}{len(rows)} row{'s' if len(rows) != 1 else ''}{OFF}, "
-          f"across {BOLD}{total:,}{OFF} judgments from the three arms.")
-    print()
-    print(wrap("One prompt, one hash, every judgment. If the rubric had been edited "
-               "mid-study, this query would return two rows and the comparison between "
-               "the tiers would be void."))
-    beat()
-
-
-def act6() -> None:
-    act(6, "Every published number, rebuilt from the stored judgments",
+def act_gate() -> None:
+    act(5, "Every published number, rebuilt from the stored judgments",
         "python3 analysis/ci_gate.py")
     print()
     proc = subprocess.run([sys.executable, "analysis/ci_gate.py"],
@@ -316,6 +309,8 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--no-pause", action="store_true", help="run unattended, for timing")
     ap.add_argument("--case", default=DEFAULT_CASE, help="uid of the summary to judge")
+    ap.add_argument("--gate", action="store_true",
+                    help="add a fifth act: re-derive every published number from the store")
     ap.add_argument("--list", action="store_true",
                     help="show candidate cases and exit, for choosing one before recording")
     a = ap.parse_args()
@@ -340,15 +335,15 @@ def main() -> None:
     act2(sample)
     parsed = act3(sample)
     act4(sample, parsed)
-    act5()
-    act6()
+    if a.gate:
+        act_gate()
     clear()
     print()
-    print(f"{BOLD}  That is the harness.{OFF}")
+    print(f"{BOLD}  One case, and the study is 488 of them.{OFF}")
     print()
-    print(wrap("The prompt was frozen, one summary was judged live on this machine, the "
-               "experts disagreed with it, no prompt drifted across 6,750 judgments, and "
-               "every number in the paper rebuilt itself from the store."))
+    print(wrap("The judge passed a summary three experts had marked, one of them as a "
+               "clear error. Across the whole held-out half these judges catch between "
+               "25 and 35 percent of what the experts marked unfaithful."))
     print()
     print(f"{DIM}  demo ran in {time.time() - started:.0f}s{OFF}")
     print()
