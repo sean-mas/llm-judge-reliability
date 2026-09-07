@@ -4,7 +4,7 @@
     python3 src/runner.py --tier local --split dev --repeats 3
     python3 src/runner.py --tier paid --split test --repeats 3
 
-Four rules from project-plan.md section 4, all enforced here:
+Four rules from the plan of record, section 4, all enforced here:
 
 1. Cache everything, keyed on item, judge, model and prompt hash. Anything
    already in the store is skipped without a call.

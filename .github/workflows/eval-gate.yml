@@ -1,0 +1,47 @@
+name: eval gate
+
+# Continuous evaluation. The published result is a regression test.
+#
+# The judgment store is committed, so this needs no API keys and costs nothing
+# to run. That is a property of the cache-everything design in src/runner.py
+# rather than a workaround, and it is what makes running the eval on every push
+# affordable at all.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  reproduce:
+    name: published numbers still reproduce
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Cache the FaithBench corpus
+        id: corpus
+        uses: actions/cache@v4
+        with:
+          path: data/raw/FaithBench
+          key: faithbench-corpus-v1
+
+      - name: Fetch the corpus
+        if: steps.corpus.outputs.cache-hit != 'true'
+        run: python data/download_faithbench.py
+
+      - name: Install
+        run: pip install -e .
+
+      - name: Eval gate
+        run: python analysis/ci_gate.py
+
+      - name: Full analysis, primary result
+        run: python analysis/stats.py --split test --i-am-ready-to-spend-the-test-split

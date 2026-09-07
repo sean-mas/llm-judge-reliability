@@ -1,6 +1,6 @@
 """Gate B: is FaithBench usable for this study?
 
-Three questions, from project-plan.md section 2. The whole analysis plan assumes
+Three questions, from the plan of record, section 2. The whole analysis plan assumes
 all three, so they get answered before anything else is built.
 
     1. How many items are there?          -> can a 300-item stratified sample be drawn?

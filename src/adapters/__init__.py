@@ -145,7 +145,7 @@ def _require_env(name: str) -> str:
     val = os.environ.get(name, "").strip()
     if not val:
         raise JudgeError(
-            f"{name} is empty. Open faithbench-judge-study/.env and paste the key "
+            f"{name} is empty. Open .env and paste the key "
             f"after '{name}='. Then check it with: python3 src/check_env.py"
         )
     return val

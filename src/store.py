@@ -4,7 +4,7 @@ SQLite, because it is a single file, needs no server, survives a crash mid-run,
 and can be queried directly from the analysis notebook. The file is the study's
 raw data and ships with the repository.
 
-The central rule from project-plan.md section 4: **one row per judgment**.
+The central rule from the plan of record, section 4: **one row per judgment**.
 Aggregation happens in analysis, so the aggregation rule can change without
 re-running 6,750 API calls.
 

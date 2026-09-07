@@ -1,0 +1,23 @@
+# Secrets. Deliberately broad: this repository is published.
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+secrets.*
+credentials.*
+*_token
+*_secret
+
+# The corpus is fetched, not vendored. See data/download_faithbench.py
+data/raw/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+
+# macOS
+.DS_Store
