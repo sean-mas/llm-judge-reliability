@@ -82,14 +82,14 @@ schemes rather than under the one that reads best.
 
 **The predictions were committed before the data was read.** Fourteen falsifiable
 predictions live in [`appendix/predictions.md`](appendix/predictions.md), frozen
-in commit `FREEZE_SHA` ("Freeze everything before the test split is read"). The
-test split was read in `TESTREAD_SHA`. The order is in the git history and anyone
+in commit `6892799` ("Freeze everything before the test split is read"). The
+test split was read in `23c0610`. The order is in the git history and anyone
 can check it. Ten held, two held in part, one was weakened to its margin, and
 **prediction 4 was overturned** and is reported as overturned.
 
 ```bash
 git log --oneline --reverse
-git diff FREEZE_SHA TESTREAD_SHA -- appendix/predictions.md
+git diff 6892799 23c0610 -- appendix/predictions.md
 ```
 
 The diff shows exactly what was added after the data was seen: the verdict column,
