@@ -36,7 +36,7 @@ class PaidJudge(JudgeAdapter):
 
     rate_limit_rpm = None  # paid tier limits are far above what this study needs
 
-    #: Sending `temperature` to claude-sonnet-5 returns HTTP 400,
+    #: Sending `temperature` to claude-opus-5 returns HTTP 400,
     #: "`temperature` is deprecated for this model" (observed 06.08.2026).
     #:
     #: The other two tiers are pinned to temperature 0, so the three cannot be
